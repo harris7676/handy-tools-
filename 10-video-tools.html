@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Tools</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e88e5, #0d47a1);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .tool-icon {
+            background: #e3f2fd;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1565c0;
+            font-size: 2.5rem;
+        }
+        
+        .tool-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tool-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0d47a1;
+            margin-bottom: 10px;
+        }
+        
+        .tool-description {
+            color: #555;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .use-tool-btn {
+            background: #1e88e5;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-align: center;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .use-tool-btn:hover {
+            background: #1565c0;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Video Tools</h1>
+            <p class="subtitle">Powerful video editing and conversion tools for all your needs</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="tools-grid">
+            <!-- Tool 1: Video Compressor -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    📦
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title">Video Compressor</h3>
+                    <p class="tool-description">Reduce video file size while maintaining quality. Perfect for sharing and storage.</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Tool 2: Video Cutter -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    ✂️
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title">Video Cutter</h3>
+                    <p class="tool-description">Cut and extract specific parts from your videos with precision timing.</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Tool 3: Video Merger -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    🎬
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title">Video Merger</h3>
+                    <p class="tool-description">Combine multiple video clips into one seamless video file.</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Tool 4: Video to MP3 -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    🎵
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title">Video to MP3</h3>
+                    <p class="tool-description">Extract audio from video files and convert to MP3 format.</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Tool 5: Video Converter -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    🔄
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title">Video Converter</h3>
+                    <p class="tool-description">Convert videos between different formats like MP4, AVI, MOV, MKV, and more.</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Tool 6: Video Rotator -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    🔁
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title">Video Rotator</h3>
+                    <p class="tool-description">Rotate videos 90°, 180°, or 270° to fix orientation issues.</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Tool 7: Video Trimmer -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    ⏱️
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title">Video Trimmer</h3>
+                    <p class="tool-description">Trim video length by removing unwanted parts from beginning or end.</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Tool 8: Video Speed Controller -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    ⚡
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title">Video Speed Controller</h3>
+                    <p class="tool-description">Adjust video playback speed - slow motion or fast forward as needed.</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Tool 9: Video Watermark Remover -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    💧
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title">Video Watermark Remover</h3>
+                    <p class="tool-description">Remove watermarks, logos, or unwanted objects from your videos.</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Tool 10: Video to GIF -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    GIF
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title">Video to GIF</h3>
+                    <p class="tool-description">Convert video clips to animated GIFs with customizable settings.</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2023 Video Tools. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
