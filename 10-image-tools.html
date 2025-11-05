@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Tools</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e88e5, #0d47a1);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .tool-icon {
+            background: #e3f2fd;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1565c0;
+            font-size: 2.5rem;
+        }
+        
+        .tool-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tool-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0d47a1;
+            margin-bottom: 10px;
+        }
+        
+        .tool-description {
+            color: #555;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .use-tool-btn {
+            background: #1e88e5;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-align: center;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .use-tool-btn:hover {
+            background: #1565c0;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Image Tools</h1>
+            <p class="subtitle">Powerful tools to edit, convert and optimize your images</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="tools-grid">
+            <!-- Tool 1: Image Compressor -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    📦
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title">Image Compressor</h3>
+                    <p class="tool-description">Reduce image file size without losing quality. Perfect for web optimization and faster loading.</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Tool 2: Image Converter -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    🔄
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title">Image Converter</h3>
+                    <p class="tool-description">Convert images between different formats like JPG, PNG, WEBP, GIF, and more.</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Tool 3: Background Remover -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    ✂️
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title">Background Remover</h3>
+                    <p class="tool-description">Remove backgrounds from images automatically with AI-powered precision.</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Tool 4: Image Resizer -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    📏
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title">Image Resizer</h3>
+                    <p class="tool-description">Resize images to specific dimensions while maintaining aspect ratio and quality.</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Tool 5: Image Cropper -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    🔪
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title">Image Cropper</h3>
+                    <p class="tool-description">Crop images to remove unwanted areas or focus on specific parts of the image.</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Tool 6: Image Rotator -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    🔁
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title">Image Rotator</h3>
+                    <p class="tool-description">Rotate and flip images in any direction. Fix orientation issues easily.</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Tool 7: Image Enhancer -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    ✨
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title">Image Enhancer</h3>
+                    <p class="tool-description">Improve image quality, adjust brightness, contrast, and apply filters.</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Tool 8: Image to PDF -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    📄
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title">Image to PDF</h3>
+                    <p class="tool-description">Convert one or multiple images into a PDF document with customizable settings.</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Tool 9: Watermark Adder and Remover -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    💧
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title">Watermark Tools</h3>
+                    <p class="tool-description">Add text or image watermarks to protect your images, or remove existing ones.</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Tool 10: Image Format Info -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    ℹ️
+                </div>
+                <div class="tool-content">
+                    <h3 class="tool-title">Image Format Info</h3>
+                    <p class="tool-description">Get detailed information about image formats, properties, and metadata.</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2023 Image Tools. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
