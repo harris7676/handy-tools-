@@ -5,77 +5,115 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Under Construction</title>
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0B72FF, #4A90E2, #007BFF);
-      color: white;
+      background: radial-gradient(circle at top left, #0B72FF, #4A90E2, #001F54);
       overflow: hidden;
+      color: #fff;
+    }
+
+    /* Background floating circles */
+    .bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.4;
+      animation: floatCircle 12s infinite ease-in-out alternate;
+    }
+    .circle1 { width: 250px; height: 250px; background: #FF8A00; top: 10%; left: 15%; animation-delay: 0s; }
+    .circle2 { width: 300px; height: 300px; background: #00CFFF; bottom: 10%; right: 10%; animation-delay: 2s; }
+    .circle3 { width: 200px; height: 200px; background: #FFD700; bottom: 20%; left: 20%; animation-delay: 4s; }
+
+    @keyframes floatCircle {
+      from { transform: translateY(0); }
+      to { transform: translateY(-50px); }
     }
 
     .container {
       text-align: center;
+      padding: 70px 100px;
       background: rgba(255, 255, 255, 0.1);
-      padding: 60px 80px;
-      border-radius: 25px;
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
+      border-radius: 30px;
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      z-index: 10;
       animation: fadeIn 2s ease-in-out;
     }
 
     .emoji {
-      font-size: 70px;
-      animation: bounce 1.5s infinite;
+      font-size: 85px;
+      animation: bounce 2s infinite;
+      filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.4));
     }
 
     h1 {
-      font-size: 48px;
-      margin: 15px 0;
-      text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+      font-size: 60px;
+      margin: 20px 0 10px;
+      background: linear-gradient(90deg, #ffffff, #FFD700, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 300%;
+      animation: shine 4s linear infinite;
+      letter-spacing: 1px;
     }
 
     p {
-      font-size: 20px;
+      font-size: 21px;
       opacity: 0.9;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+      margin-bottom: 30px;
     }
 
     .loader {
-      margin-top: 25px;
-      width: 60px;
-      height: 60px;
-      border: 5px solid rgba(255, 255, 255, 0.3);
-      border-top-color: white;
+      width: 80px;
+      height: 80px;
+      border: 6px solid rgba(255, 255, 255, 0.2);
+      border-top-color: #FFD700;
       border-radius: 50%;
-      animation: spin 1.5s linear infinite;
-      margin-left: auto;
-      margin-right: auto;
+      animation: spin 1.4s linear infinite;
+      margin: 0 auto;
     }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    footer {
+      position: absolute;
+      bottom: 25px;
+      font-size: 14px;
+      opacity: 0.85;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Animations */
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+    @keyframes shine {
+      0% { background-position: -300px; }
+      100% { background-position: 300px; }
     }
   </style>
 </head>
 <body>
+  <div class="bg-circle circle1"></div>
+  <div class="bg-circle circle2"></div>
+  <div class="bg-circle circle3"></div>
+
   <div class="container">
     <div class="emoji">🚧</div>
     <h1>Under Construction</h1>
-    <p>We’re building something amazing for you.<br>Please check back soon!</p>
+    <p>We’re crafting something special for you.<br>Stay connected with HandyTools!</p>
     <div class="loader"></div>
   </div>
+
+  <footer>© 2025 HandyTools — All Rights Reserved</footer>
 </body>
 </html>
