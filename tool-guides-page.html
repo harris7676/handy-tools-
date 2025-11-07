@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool Guides - ToolsHub | Step-by-Step Tutorials for All Tools</title>
+    <meta name="description" content="Learn how to use ToolsHub tools with comprehensive step-by-step guides, tutorials, and best practices for all file conversion and editing tools.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4361ee, #7209b7);
+            color: white;
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            opacity: 0.9;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content {
+            padding: 3rem 2rem;
+        }
+
+        /* Tool Categories Navigation */
+        .tool-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .category-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid #4361ee;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .category-card.active {
+            border-top-color: #7209b7;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            color: #4361ee;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-card.active h3 {
+            color: #7209b7;
+        }
+
+        /* Guide Sections */
+        .guide-section {
+            display: none;
+            margin: 3rem 0;
+        }
+
+        .guide-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+            color: #4361ee;
+        }
+
+        .section-header h2 {
+            color: #4361ee;
+            font-size: 2rem;
+        }
+
+        /* Tool Guides Grid */
+        .tool-guides {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .tool-guide {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 2rem;
+            border-left: 4px solid #7209b7;
+            transition: all 0.3s ease;
+        }
+
+        .tool-guide:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .tool-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: #4361ee;
+        }
+
+        .tool-header h3 {
+            color: #4361ee;
+            font-size: 1.3rem;
+        }
+
+        .tool-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* Steps */
+        .steps {
+            counter-reset: step-counter;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background: #4361ee;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-description {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Tips & Best Practices */
+        .tips-section {
+            background: linear-gradient(135deg, #e8f4fd, #d1ecf1);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 4px solid #4361ee;
+        }
+
+        .tips-section h3 {
+            color: #4361ee;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .tip-icon {
+            margin-right: 0.5rem;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .tip-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .tip-item:before {
+            content: "💡";
+            margin-right: 0.5rem;
+            color: #ffc107;
+        }
+
+        /* File Requirements */
+        .requirements {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .requirements h4 {
+            color: #856404;
+            margin-bottom: 0.5rem;
+        }
+
+        .requirements ul {
+            margin-left: 1.5rem;
+            color: #856404;
+        }
+
+        .requirements li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: #4361ee;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: #3a56d4;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        .btn-secondary {
+            background: #7209b7;
+        }
+
+        .btn-secondary:hover {
+            background: #650a9e;
+        }
+
+        footer {
+            background: #212529;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 2rem 1rem;
+            }
+            
+            .tool-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .tool-guides {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .quick-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tool Guides & Tutorials</h1>
+            <p class="subtitle">Step-by-step instructions and best practices for all ToolsHub tools</p>
+        </header>
+
+        <div class="content">
+            <!-- Tool Categories Navigation -->
+            <div class="tool-categories">
+                <div class="category-card active" onclick="showGuideSection('image-tools')">
+                    <div class="category-icon">🖼️</div>
+                    <h3>Image Tools</h3>
+                    <p>Background removal, conversion, compression</p>
+                </div>
+                <div class="category-card" onclick="showGuideSection('pdf-tools')">
+                    <div class="category-icon">📄</div>
+                    <h3>PDF Tools</h3>
+                    <p>Conversion, compression, editing</p>
+                </div>
+                <div class="category-card" onclick="showGuideSection('video-tools')">
+                    <div class="category-icon">🎥</div>
+                    <h3>Video Tools</h3>
+                    <p>Conversion, compression, editing</p>
+                </div>
+                <div class="category-card" onclick="showGuideSection('audio-tools')">
+                    <div class="category-icon">🎵</div>
+                    <h3>Audio Tools</h3>
+                    <p>Conversion, compression, editing</p>
+                </div>
+            </div>
+
+            <!-- Image Tools Section -->
+            <div class="guide-section active" id="image-tools">
+                <div class="section-header">
+                    <div class="section-icon">🖼️</div>
+                    <h2>Image Tools Guides</h2>
+                </div>
+
+                <div class="tool-guides">
+                    <!-- Background Remover Guide -->
+                    <div class="tool-guide">
+                        <div class="tool-header">
+                            <div class="tool-icon">✨</div>
+                            <h3>Background Remover</h3>
+                        </div>
+                        <div class="tool-description">
+                            Remove backgrounds from images automatically using AI. Perfect for product photos, portraits, and creating transparent PNGs.
+                        </div>
+
+                        <div class="requirements">
+                            <h4>📋 File Requirements</h4>
+                            <ul>
+                                <li>Supported formats: JPG, PNG, WebP</li>
+                                <li>Max file size: 5MB</li>
+                                <li>Recommended: High-contrast images</li>
+                            </ul>
+                        </div>
+
+                        <div class="steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <div class="step-title">Upload Your Image</div>
+                                    <div class="step-description">Click the upload area or drag & drop your image. Supported formats include JPG, PNG, and WebP.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <div class="step-title">AI Processing</div>
+                                    <div class="step-description">Our AI automatically detects and removes the background. This usually takes 5-15 seconds depending on image complexity.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <div class="step-title">Preview & Adjust</div>
+                                    <div class="step-description">Review the result. The tool shows before/after comparison. For complex images, you may need manual touch-ups.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <div class="step-title">Download Result</div>
+                                    <div class="step-description">Download your image as a transparent PNG file. The background will be completely removed.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tips-section">
+                            <h3><span class="tip-icon">💡</span> Pro Tips</h3>
+                            <div class="tips-grid">
+                                <div class="tip-item">Use high-contrast images for best results</div>
+                                <div class="tip-item">Avoid busy backgrounds with similar colors to subject</div>
+                                <div class="tip-item">PNG format preserves transparency</div>
+                                <div class="tip-item">For hair/fur details, ensure good lighting</div>
+                            </div>
+                        </div>
+
+                        <div class="quick-actions">
+                            <a href="#" class="btn">🚀 Try Background Remover</a>
+                            <a href="#" class="btn btn-secondary">📖 Advanced Tips</a>
+                        </div>
+                    </div>
+
+                    <!-- Image Converter Guide -->
+                    <div class="tool-guide">
+                        <div class="tool-header">
+                            <div class="tool-icon">🔄</div>
+                            <h3>Image Converter</h3>
+                        </div>
+                        <div class="tool-description">
+                            Convert images between different formats (JPG, PNG, WebP) while maintaining quality and optimizing file size.
+                        </div>
+
+                        <div class="requirements">
+                            <h4>📋 File Requirements</h4>
+                            <ul>
+                                <li>Input formats: JPG, PNG, WebP, GIF</li>
+                                <li>Output formats: JPG, PNG, WebP</li>
+                                <li>Max file size: 10MB</li>
+                            </ul>
+                        </div>
+
+                        <div class="steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <div class="step-title">Select Source Image</div>
+                                    <div class="step-description">Upload the image you want to convert. All major image formats are supported.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <div class="step-title">Choose Target Format</div>
+                                    <div class="step-description">Select your desired output format (JPG, PNG, or WebP). Each format has different advantages.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <div class="step-title">Adjust Settings</div>
+                                    <div class="step-description">Set quality level and other options. Higher quality means larger file sizes.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <div class="step-title">Convert & Download</div>
+                                    <div class="step-description">Click convert and download your image in the new format instantly.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tips-section">
+                            <h3><span class="tip-icon">💡</span> Format Guide</h3>
+                            <div class="tips-grid">
+                                <div class="tip-item">JPG: Best for photographs, smaller file size</div>
+                                <div class="tip-item">PNG: Best for graphics with transparency</div>
+                                <div class="tip-item">WebP: Modern format, excellent compression</div>
+                                <div class="tip-item">GIF: For simple animations only</div>
+                            </div>
+                        </div>
+
+                        <div class="quick-actions">
+                            <a href="#" class="btn">🔄 Try Image Converter</a>
+                            <a href="#" class="btn btn-secondary">📊 Format Comparison</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PDF Tools Section -->
+            <div class="guide-section" id="pdf-tools">
+                <div class="section-header">
+                    <div class="section-icon">📄</div>
+                    <h2>PDF Tools Guides</h2>
+                </div>
+
+                <div class="tool-guides">
+                    <!-- PDF to Word Converter -->
+                    <div class="tool-guide">
+                        <div class="tool-header">
+                            <div class="tool-icon">📝</div>
+                            <h3>PDF to Word Converter</h3>
+                        </div>
+                        <div class="tool-description">
+                            Convert PDF documents to editable Word files while preserving formatting, images, and layout.
+                        </div>
+
+                        <div class="requirements">
+                            <h4>📋 File Requirements</h4>
+                            <ul>
+                                <li>Max file size: 50MB</li>
+                                <li>Text PDFs and scanned PDFs supported</li>
+                                <li>Output format: DOCX (Microsoft Word)</li>
+                            </ul>
+                        </div>
+
+                        <div class="steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <div class="step-title">Upload PDF File</div>
+                                    <div class="step-description">Select your PDF document. Both text-based and scanned PDFs are supported.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <div class="step-title">OCR Processing</div>
+                                    <div class="step-description">For scanned PDFs, OCR technology extracts text and recognizes layout automatically.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <div class="step-title">Format Preservation</div>
+                                    <div class="step-description">The tool maintains fonts, images, tables, and overall document structure.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <div class="step-title">Download DOCX</div>
+                                    <div class="step-description">Get your fully editable Word document ready for modifications.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tips-section">
+                            <h3><span class="tip-icon">💡</span> Best Practices</h3>
+                            <div class="tips-grid">
+                                <div class="tip-item">Use high-quality scans for better OCR accuracy</div>
+                                <div class="tip-item">Text PDFs convert faster than scanned PDFs</div>
+                                <div class="tip-item">Complex layouts may require manual adjustments</div>
+                                <div class="tip-item">Check formatting in Word after conversion</div>
+                            </div>
+                        </div>
+
+                        <div class="quick-actions">
+                            <a href="#" class="btn">📝 Try PDF to Word</a>
+                            <a href="#" class="btn btn-secondary">🔍 OCR Settings</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Tools Section -->
+            <div class="guide-section" id="video-tools">
+                <div class="section-header">
+                    <div class="section-icon">🎥</div>
+                    <h2>Video Tools Guides</h2>
+                </div>
+
+                <div class="tool-guides">
+                    <!-- Video Converter -->
+                    <div class="tool-guide">
+                        <div class="tool-header">
+                            <div class="tool-icon">🎬</div>
+                            <h3>Video Converter</h3>
+                        </div>
+                        <div class="tool-description">
+                            Convert videos between different formats (MP4, AVI, MOV, etc.) with customizable quality settings and fast processing.
+                        </div>
+
+                        <div class="requirements">
+                            <h4>📋 File Requirements</h4>
+                            <ul>
+                                <li>Max file size: 100MB</li>
+                                <li>Supported formats: MP4, AVI, MOV, MKV, WMV</li>
+                                <li>Processing time: 2-10 minutes</li>
+                            </ul>
+                        </div>
+
+                        <div class="steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <div class="step-title">Upload Video</div>
+                                    <div class="step-description">Select your video file. Most common formats are supported up to 100MB.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <div class="step-title">Choose Output Format</div>
+                                    <div class="step-description">Select target format. MP4 is recommended for best compatibility.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <div class="step-title">Quality Settings</div>
+                                    <div class="step-description">Adjust resolution, bitrate, and other video parameters based on your needs.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <div class="step-title">Convert & Download</div>
+                                    <div class="step-description">Wait for processing and download your converted video file.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tips-section">
+                            <h3><span class="tip-icon">💡</span> Format Recommendations</h3>
+                            <div class="tips-grid">
+                                <div class="tip-item">MP4: Universal compatibility, web-friendly</div>
+                                <div class="tip-item">MOV: High quality, Apple devices</div>
+                                <div class="tip-item">AVI: Uncompressed, large file size</div>
+                                <div class="tip-item">WebM: Web optimization, small size</div>
+                            </div>
+                        </div>
+
+                        <div class="quick-actions">
+                            <a href="#" class="btn">🎬 Try Video Converter</a>
+                            <a href="#" class="btn btn-secondary">⚙️ Advanced Settings</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audio Tools Section -->
+            <div class="guide-section" id="audio-tools">
+                <div class="section-header">
+                    <div class="section-icon">🎵</div>
+                    <h2>Audio Tools Guides</h2>
+                </div>
+
+                <div class="tool-guides">
+                    <!-- Audio Converter -->
+                    <div class="tool-guide">
+                        <div class="tool-header">
+                            <div class="tool-icon">🎶</div>
+                            <h3>Audio Converter</h3>
+                        </div>
+                        <div class="tool-description">
+                            Convert audio files between different formats (MP3, WAV, FLAC, AAC) with bitrate control and quality preservation.
+                        </div>
+
+                        <div class="requirements">
+                            <h4>📋 File Requirements</h4>
+                            <ul>
+                                <li>Max file size: 50MB</li>
+                                <li>Supported formats: MP3, WAV, FLAC, AAC, OGG</li>
+                                <li>Bitrate: 64kbps to 320kbps</li>
+                            </ul>
+                        </div>
+
+                        <div class="steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <div class="step-title">Upload Audio File</div>
+                                    <div class="step-description">Select your audio file. All major audio formats are supported.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <div class="step-title">Select Output Format</div>
+                                    <div class="step-description">Choose target format. MP3 for size, WAV for quality, FLAC for lossless.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <div class="step-title">Audio Settings</div>
+                                    <div class="step-description">Set bitrate, sample rate, and channels. Higher bitrate = better quality.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <div class="step-title">Convert & Download</div>
+                                    <div class="step-description">Process and download your converted audio file instantly.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tips-section">
+                            <h3><span class="tip-icon">💡</span> Audio Quality Guide</h3>
+                            <div class="tips-grid">
+                                <div class="tip-item">MP3: 128kbps (good), 192kbps (better), 320kbps (best)</div>
+                                <div class="tip-item">WAV: Uncompressed, CD quality, large files</div>
+                                <div class="tip-item">FLAC: Lossless compression, perfect quality</div>
+                                <div class="tip-item">AAC: Better than MP3 at same bitrate</div>
+                            </div>
+                        </div>
+
+                        <div class="quick-actions">
+                            <a href="#" class="btn">🎶 Try Audio Converter</a>
+                            <a href="#" class="btn btn-secondary">📊 Bitrate Guide</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <p>Master all ToolsHub tools with our comprehensive guides and tutorials!</p>
+                <div class="footer-links">
+                    <a href="#">Home</a>
+                    <a href="#">All Tools</a>
+                    <a href="#">About Us</a>
+                    <a href="#">Help Center</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Contact Support</a>
+                </div>
+                <p>&copy; 2025 ToolsHub. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function showGuideSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.guide-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all category cards
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Activate corresponding category card
+            event.currentTarget.classList.add('active');
+            
+            // Scroll to section
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Initialize first section as active
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set first category card as active by default
+            document.querySelector('.category-card').classList.add('active');
+            document.getElementById('image-tools').classList.add('active');
+        });
+
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
