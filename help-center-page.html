@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center - ToolsHub | Your One-Stop Destination for All Online Tools</title>
+    <meta name="description" content="Get help with ToolsHub tools. Comprehensive guides, tutorials, and support for all our online file conversion and editing tools.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4361ee, #7209b7);
+            color: white;
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            opacity: 0.9;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content {
+            padding: 3rem 2rem;
+        }
+
+        /* Search Section */
+        .search-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e9ecef;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #4361ee;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.2);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #4361ee;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        /* Quick Links */
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .quick-link-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid #4361ee;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .quick-link-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .quick-link-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .quick-link-card h3 {
+            color: #4361ee;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tool Categories */
+        .tool-categories {
+            margin: 3rem 0;
+        }
+
+        .category-section {
+            margin-bottom: 3rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .category-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: #4361ee;
+        }
+
+        .category-header h2 {
+            color: #4361ee;
+            font-size: 1.8rem;
+        }
+
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .guide-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #7209b7;
+        }
+
+        .guide-card h4 {
+            color: #4361ee;
+            margin-bottom: 0.5rem;
+        }
+
+        .guide-card p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .guide-steps {
+            list-style: none;
+        }
+
+        .guide-steps li {
+            padding: 0.3rem 0;
+            color: #555;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .guide-steps li:before {
+            content: "→";
+            color: #7209b7;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 3rem 0;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .faq-category h3 {
+            color: #4361ee;
+            margin-bottom: 1rem;
+            border-left: 4px solid #7209b7;
+            padding-left: 10px;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            color: #333;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            color: #666;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            padding: 2rem;
+            background: #4361ee;
+            color: white;
+            border-radius: 10px;
+            margin: 3rem 0;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            background: white;
+            color: #4361ee;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            background: #212529;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 2rem 1rem;
+            }
+            
+            .quick-links,
+            .guides-grid,
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Help Center</h1>
+            <p class="subtitle">Find answers, guides, and tutorials for all ToolsHub tools</p>
+        </header>
+
+        <div class="content">
+            <!-- Search Section -->
+            <div class="search-section">
+                <h2>How can we help you today?</h2>
+                <div class="search-box">
+                    <input type="text" placeholder="Search for guides, tutorials, or troubleshooting...">
+                    <button class="search-btn">Search</button>
+                </div>
+                <p style="margin-top: 1rem; color: #666;">Popular searches: background removal, PDF conversion, file compression</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="quick-links">
+                <div class="quick-link-card" onclick="scrollToSection('getting-started')">
+                    <div class="quick-link-icon">🚀</div>
+                    <h3>Getting Started</h3>
+                    <p>New to ToolsHub? Start here</p>
+                </div>
+                <div class="quick-link-card" onclick="scrollToSection('troubleshooting')">
+                    <div class="quick-link-icon">🔧</div>
+                    <h3>Troubleshooting</h3>
+                    <p>Common issues and solutions</p>
+                </div>
+                <div class="quick-link-card" onclick="scrollToSection('tool-guides')">
+                    <div class="quick-link-icon">📚</div>
+                    <h3>Tool Guides</h3>
+                    <p>Step-by-step tutorials</p>
+                </div>
+                <div class="quick-link-card" onclick="scrollToSection('faq')">
+                    <div class="quick-link-icon">❓</div>
+                    <h3>FAQ</h3>
+                    <p>Frequently asked questions</p>
+                </div>
+            </div>
+
+            <!-- Getting Started -->
+            <div class="category-section" id="getting-started">
+                <div class="category-header">
+                    <div class="category-icon">🚀</div>
+                    <h2>Getting Started with ToolsHub</h2>
+                </div>
+                <div class="guides-grid">
+                    <div class="guide-card">
+                        <h4>First Time User Guide</h4>
+                        <p>Learn how to make the most of ToolsHub</p>
+                        <ul class="guide-steps">
+                            <li>Choose your tool category</li>
+                            <li>Upload your file</li>
+                            <li>Adjust settings if needed</li>
+                            <li>Download processed file</li>
+                        </ul>
+                    </div>
+                    <div class="guide-card">
+                        <h4>File Requirements</h4>
+                        <p>Understand supported formats and limits</p>
+                        <ul class="guide-steps">
+                            <li>Maximum file size: 5MB-100MB</li>
+                            <li>Supported formats vary by tool</li>
+                            <li>No registration required</li>
+                            <li>Files auto-delete after processing</li>
+                        </ul>
+                    </div>
+                    <div class="guide-card">
+                        <h4>Best Practices</h4>
+                        <p>Get the best results from our tools</p>
+                        <ul class="guide-steps">
+                            <li>Use high-quality source files</li>
+                            <li>Check format compatibility</li>
+                            <li>Use recommended settings</li>
+                            <li>Clear browser cache regularly</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool Guides -->
+            <div class="tool-categories" id="tool-guides">
+                
+                <!-- Image Tools -->
+                <div class="category-section">
+                    <div class="category-header">
+                        <div class="category-icon">🖼️</div>
+                        <h2>Image Tools Guides</h2>
+                    </div>
+                    <div class="guides-grid">
+                        <div class="guide-card">
+                            <h4>Background Remover</h4>
+                            <p>Remove backgrounds from images automatically</p>
+                            <ul class="guide-steps">
+                                <li>Upload JPG, PNG, or WebP image</li>
+                                <li>AI automatically detects background</li>
+                                <li>Download transparent PNG result</li>
+                                <li>Tips: Use high-contrast images</li>
+                            </ul>
+                        </div>
+                        <div class="guide-card">
+                            <h4>Image Converter</h4>
+                            <p>Convert between different image formats</p>
+                            <ul class="guide-steps">
+                                <li>Upload your source image</li>
+                                <li>Select target format (JPG, PNG, WebP)</li>
+                                <li>Adjust quality settings</li>
+                                <li>Download converted file</li>
+                            </ul>
+                        </div>
+                        <div class="guide-card">
+                            <h4>Photo Compressor</h4>
+                            <p>Reduce image file size without losing quality</p>
+                            <ul class="guide-steps">
+                                <li>Upload image to compress</li>
+                                <li>Choose compression level</li>
+                                <li>Preview quality difference</li>
+                                <li>Download optimized image</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PDF Tools -->
+                <div class="category-section">
+                    <div class="category-header">
+                        <div class="category-icon">📄</div>
+                        <h2>PDF Tools Guides</h2>
+                    </div>
+                    <div class="guides-grid">
+                        <div class="guide-card">
+                            <h4>PDF to Word Converter</h4>
+                            <p>Convert PDF documents to editable Word files</p>
+                            <ul class="guide-steps">
+                                <li>Upload PDF file (max 50MB)</li>
+                                <li>OCR processing for scanned PDFs</li>
+                                <li>Download editable DOCX file</li>
+                                <li>Preserves formatting and layout</li>
+                            </ul>
+                        </div>
+                        <div class="guide-card">
+                            <h4>PDF Compressor</h4>
+                            <p>Reduce PDF file size for sharing</p>
+                            <ul class="guide-steps">
+                                <li>Upload PDF to compress</li>
+                                <li>Choose compression level</li>
+                                <li>Preview file size reduction</li>
+                                <li>Download compressed PDF</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Tools -->
+                <div class="category-section">
+                    <div class="category-header">
+                        <div class="category-icon">🎥</div>
+                        <h2>Video Tools Guides</h2>
+                    </div>
+                    <div class="guides-grid">
+                        <div class="guide-card">
+                            <h4>Video Converter</h4>
+                            <p>Convert videos between different formats</p>
+                            <ul class="guide-steps">
+                                <li>Upload video file (max 100MB)</li>
+                                <li>Select output format (MP4, AVI, etc.)</li>
+                                <li>Choose quality settings</li>
+                                <li>Download converted video</li>
+                            </ul>
+                        </div>
+                        <div class="guide-card">
+                            <h4>Video Compressor</h4>
+                            <p>Reduce video file size for sharing</p>
+                            <ul class="guide-steps">
+                                <li>Upload video to compress</li>
+                                <li>Adjust compression settings</li>
+                                <li>Preview quality and size</li>
+                                <li>Download compressed video</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-section" id="faq">
+                <h2 style="text-align: center; margin-bottom: 2rem; color: #4361ee;">Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-category">
+                        <h3>General Questions</h3>
+                        <div class="faq-item" onclick="toggleFAQ(this)">
+                            <div class="faq-question">
+                                Is ToolsHub completely free?
+                                <span>+</span>
+                            </div>
+                            <div class="faq-answer">
+                                Yes! All ToolsHub tools are completely free to use. We don't charge for any conversions, compressions, or edits. There are no hidden fees or watermarks.
+                            </div>
+                        </div>
+                        <div class="faq-item" onclick="toggleFAQ(this)">
+                            <div class="faq-question">
+                                Do I need to create an account?
+                                <span>+</span>
+                            </div>
+                            <div class="faq-answer">
+                                No registration required! You can use all tools immediately without signing up. We believe in providing instant access to our services.
+                            </div>
+                        </div>
+                        <div class="faq-item" onclick="toggleFAQ(this)">
+                            <div class="faq-question">
+                                What are the file size limits?
+                                <span>+</span>
+                            </div>
+                            <div class="faq-answer">
+                                Limits vary by tool: Images (5-20MB), PDFs (50MB), Videos (100MB). These limits ensure fast processing for all users.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-category">
+                        <h3>Privacy & Security</h3>
+                        <div class="faq-item" onclick="toggleFAQ(this)">
+                            <div class="faq-question">
+                                Are my files safe and private?
+                                <span>+</span>
+                            </div>
+                            <div class="faq-answer">
+                                Absolutely! Files are processed in real-time and automatically deleted. We don't store your files on our servers after processing.
+                            </div>
+                        </div>
+                        <div class="faq-item" onclick="toggleFAQ(this)">
+                            <div class="faq-question">
+                                Do you keep copies of my files?
+                                <span>+</span>
+                            </div>
+                            <div class="faq-answer">
+                                No, we don't keep any copies. Files are temporarily stored during processing and permanently deleted immediately after.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-category">
+                        <h3>Technical Issues</h3>
+                        <div class="faq-item" onclick="toggleFAQ(this)">
+                            <div class="faq-question">
+                                Why is my file not uploading?
+                                <span>+</span>
+                            </div>
+                            <div class="faq-answer">
+                                Check file size limits and format compatibility. Also try refreshing the page or using a different browser.
+                            </div>
+                        </div>
+                        <div class="faq-item" onclick="toggleFAQ(this)">
+                            <div class="faq-question">
+                                The tool is processing slowly, why?
+                                <span>+</span>
+                            </div>
+                            <div class="faq-answer">
+                                Processing time depends on file size and server load. Large files or peak usage times may cause slower processing.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Troubleshooting -->
+            <div class="category-section" id="troubleshooting">
+                <div class="category-header">
+                    <div class="category-icon">🔧</div>
+                    <h2>Troubleshooting Common Issues</h2>
+                </div>
+                <div class="guides-grid">
+                    <div class="guide-card">
+                        <h4>File Upload Problems</h4>
+                        <ul class="guide-steps">
+                            <li>Check file size and format requirements</li>
+                            <li>Clear browser cache and cookies</li>
+                            <li>Try a different web browser</li>
+                            <li>Check internet connection stability</li>
+                        </ul>
+                    </div>
+                    <div class="guide-card">
+                        <h4>Download Issues</h4>
+                        <ul class="guide-steps">
+                            <li>Disable pop-up blockers</li>
+                            <li>Check browser download settings</li>
+                            <li>Ensure sufficient storage space</li>
+                            <li>Try right-click "Save link as"</li>
+                        </ul>
+                    </div>
+                    <div class="guide-card">
+                        <h4>Quality Problems</h4>
+                        <ul class="guide-steps">
+                            <li>Use higher quality source files</li>
+                            <li>Adjust tool settings appropriately</li>
+                            <li>Check format conversion effects</li>
+                            <li>Try different compression levels</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="contact-section">
+                <h2>Still Need Help?</h2>
+                <p>Can't find what you're looking for? Our support team is here to help you.</p>
+                <button class="btn" onclick="location.href='report-issue.html'">Report an Issue</button>
+                <button class="btn" onclick="location.href='contact.html'">Contact Support</button>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <p>We're here to help you get the most out of ToolsHub!</p>
+                <div class="footer-links">
+                    <a href="#">Home</a>
+                    <a href="#">All Tools</a>
+                    <a href="#">About Us</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Report Issue</a>
+                </div>
+                <p>&copy; 2025 ToolsHub. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
+            const icon = element.querySelector('.faq-question span');
+            icon.textContent = element.classList.contains('active') ? '−' : '+';
+        }
+
+        // Search functionality
+        document.querySelector('.search-btn').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-box input').value;
+            if (searchTerm.trim()) {
+                alert(`Searching for: "${searchTerm}" - This would perform an actual search in a live implementation.`);
+            }
+        });
+
+        document.querySelector('.search-box input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.querySelector('.search-btn').click();
+            }
+        });
+    </script>
+</body>
+</html>
