@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - ToolsHub | Your One-Stop Destination for All Online Tools</title>
+    <meta name="description" content="Learn about ToolsHub - your ultimate platform for free online tools. Convert, compress, edit, and optimize files with our comprehensive suite of tools.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4361ee, #7209b7);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content {
+            padding: 3rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            color: #4361ee;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid #7209b7;
+            padding-left: 15px;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        /* Tools Categories */
+        .tools-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .category-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            color: #4361ee;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .category-card ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .category-card li {
+            padding: 0.3rem 0;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
+
+        .category-card li:before {
+            content: "✓";
+            color: #4bb543;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #7209b7;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Mission Vision */
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .mission-box, .vision-box {
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-top: 4px solid #4361ee;
+        }
+
+        .mission-box h3, .vision-box h3 {
+            color: #4361ee;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Team Section */
+        .team-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #212529;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tools-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>About ToolsHub</h1>
+            <p>Your one-stop destination for all online tools. Convert, compress, edit, and optimize files with ease.</p>
+        </header>
+
+        <div class="content">
+            <div class="section">
+                <h2>Our Story</h2>
+                <p>ToolsHub was founded with a simple yet powerful vision: to create a comprehensive platform where users can access all the digital tools they need in one convenient location. We understand the frustration of jumping between different websites for various file conversion and editing tasks.</p>
+                <p>Our journey began in 2023 when our team of developers and designers recognized the growing need for a unified tools platform. Today, ToolsHub serves thousands of users worldwide, offering a wide range of free, easy-to-use tools for images, PDFs, videos, audio, and documents.</p>
+            </div>
+
+            <div class="section">
+                <h2>Our Comprehensive Tool Suite</h2>
+                <div class="tools-categories">
+                    <div class="category-card">
+                        <div class="category-icon">🖼️</div>
+                        <h3>Image Tools</h3>
+                        <ul>
+                            <li>Background Remover</li>
+                            <li>Image Converter</li>
+                            <li>Photo Compressor</li>
+                            <li>Image Resizer</li>
+                            <li>Watermark Remover</li>
+                        </ul>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon">📄</div>
+                        <h3>PDF Tools</h3>
+                        <ul>
+                            <li>PDF to Word Converter</li>
+                            <li>PDF Compressor</li>
+                            <li>PDF Merger</li>
+                            <li>PDF Splitter</li>
+                            <li>PDF to JPG Converter</li>
+                        </ul>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon">🎥</div>
+                        <h3>Video Tools</h3>
+                        <ul>
+                            <li>Video Converter</li>
+                            <li>Video Compressor</li>
+                            <li>Video Cutter</li>
+                            <li>Audio Extractor</li>
+                            <li>Video Merger</li>
+                        </ul>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon">🎵</div>
+                        <h3>Audio Tools</h3>
+                        <ul>
+                            <li>Audio Converter</li>
+                            <li>MP3 Cutter</li>
+                            <li>Audio Compressor</li>
+                            <li>Volume Booster</li>
+                            <li>Noise Remover</li>
+                        </ul>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon">📁</div>
+                        <h3>Document Tools</h3>
+                        <ul>
+                            <li>Word to PDF</li>
+                            <li>Excel to PDF</li>
+                            <li>PPT to PDF</li>
+                            <li>Document Compressor</li>
+                            <li>Format Converter</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Tools Available</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100K+</span>
+                    <span class="stat-label">Files Processed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">150+</span>
+                    <span class="stat-label">Countries Served</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">99.9%</span>
+                    <span class="stat-label">Uptime</span>
+                </div>
+            </div>
+
+            <div class="mission-vision">
+                <div class="mission-box">
+                    <h3>Our Mission</h3>
+                    <p>To empower individuals and businesses by providing free, accessible, and powerful online tools that simplify digital tasks and enhance productivity. We believe everyone should have access to professional-grade tools without the complexity or cost.</p>
+                </div>
+                <div class="vision-box">
+                    <h3>Our Vision</h3>
+                    <p>To become the world's most trusted platform for online tools, continuously expanding our offerings while maintaining our commitment to quality, privacy, and user satisfaction. We envision a future where no one needs to download software for basic digital tasks.</p>
+                </div>
+            </div>
+
+            <div class="team-section">
+                <h2>Why Choose ToolsHub?</h2>
+                <p><strong>All-in-One Platform:</strong> Access dozens of tools from a single dashboard - no more bookmarking multiple websites.</p>
+                <p><strong>100% Free:</strong> All our tools are completely free to use with no hidden costs, watermarks, or subscription fees.</p>
+                <p><strong>Privacy First:</strong> Your files are processed securely and never stored on our servers. We believe in complete user privacy.</p>
+                <p><strong>No Registration Required:</strong> Start using our tools immediately without creating an account or providing personal information.</p>
+                <p><strong>Continuous Innovation:</strong> We regularly add new tools and improve existing ones based on user feedback and technological advancements.</p>
+            </div>
+
+            <div class="section">
+                <h2>Join Our Growing Community</h2>
+                <p>ToolsHub is more than just a tools platform - we're building a community of creators, professionals, students, and everyday users who value efficiency and simplicity. Your feedback helps us improve and expand our services.</p>
+                <p>Have a tool suggestion or need help? We're always here to support your digital journey and make file management as seamless as possible.</p>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <h3>Ready to Explore Our Tools?</h3>
+                <p>Discover how ToolsHub can simplify your digital life with our comprehensive suite of free online tools.</p>
+                <div class="footer-links">
+                    <a href="#">Home</a>
+                    <a href="#">All Tools</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Report Issue</a>
+                </div>
+                <p>&copy; 2025 ToolsHub. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
