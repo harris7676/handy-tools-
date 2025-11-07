@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Issue - ToolsHub | Your One-Stop Destination for All Online Tools</title>
+    <meta name="description" content="Report issues, bugs, or problems with ToolsHub tools. Get help with file processing, tool functionality, and platform performance.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4361ee, #7209b7);
+            color: white;
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            opacity: 0.9;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content {
+            padding: 3rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section h2 {
+            color: #4361ee;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #7209b7;
+            padding-left: 12px;
+        }
+
+        .section p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section li {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        /* Form Styles */
+        .report-form {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border: 1px solid #e9ecef;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #4361ee;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4361ee;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #4361ee, #7209b7);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        .btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Common Issues */
+        .common-issues {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .issue-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #4361ee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .issue-card h4 {
+            color: #4361ee;
+            margin-bottom: 0.5rem;
+        }
+
+        .issue-card p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Status Indicators */
+        .status-info {
+            background: #e8f4fd;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 4px solid #4361ee;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+
+        .status-dot.operational {
+            background: #4bb543;
+        }
+
+        .status-dot.degraded {
+            background: #ffc107;
+        }
+
+        .status-dot.outage {
+            background: #e63946;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-question {
+            color: #4361ee;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Contact Methods */
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid #4361ee;
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h4 {
+            color: #4361ee;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: #212529;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 2rem 1rem;
+            }
+            
+            .common-issues,
+            .contact-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Report an Issue</h1>
+            <p class="subtitle">Help us improve ToolsHub by reporting problems, bugs, or suggesting enhancements</p>
+        </header>
+
+        <div class="content">
+            <div class="section">
+                <h2>System Status</h2>
+                <div class="status-info">
+                    <div class="status-item">
+                        <div class="status-dot operational"></div>
+                        <div>
+                            <strong>All Systems Operational</strong>
+                            <p>All tools are running normally. Last updated: Just now</p>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-dot operational"></div>
+                        <div>
+                            <strong>Image Tools</strong>
+                            <p>Background Remover, Image Converter, Compressor - Operational</p>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-dot operational"></div>
+                        <div>
+                            <strong>PDF Tools</strong>
+                            <p>PDF Converter, Compressor, Merger - Operational</p>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-dot operational"></div>
+                        <div>
+                            <strong>Video & Audio Tools</strong>
+                            <p>All media processing tools - Operational</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Report Your Issue</h2>
+                <p>Please provide detailed information about the problem you're experiencing. The more details you provide, the faster we can help you.</p>
+                
+                <form class="report-form" id="issueForm">
+                    <div class="form-group">
+                        <label for="tool">Which Tool Are You Having Issues With? *</label>
+                        <select id="tool" name="tool" required>
+                            <option value="">Select a tool...</option>
+                            <optgroup label="Image Tools">
+                                <option value="background-remover">Background Remover</option>
+                                <option value="image-converter">Image Converter</option>
+                                <option value="photo-compressor">Photo Compressor</option>
+                                <option value="image-resizer">Image Resizer</option>
+                            </optgroup>
+                            <optgroup label="PDF Tools">
+                                <option value="pdf-to-word">PDF to Word Converter</option>
+                                <option value="pdf-compressor">PDF Compressor</option>
+                                <option value="pdf-merger">PDF Merger</option>
+                                <option value="pdf-splitter">PDF Splitter</option>
+                            </optgroup>
+                            <optgroup label="Video Tools">
+                                <option value="video-converter">Video Converter</option>
+                                <option value="video-compressor">Video Compressor</option>
+                                <option value="video-cutter">Video Cutter</option>
+                            </optgroup>
+                            <optgroup label="Audio Tools">
+                                <option value="audio-converter">Audio Converter</option>
+                                <option value="mp3-cutter">MP3 Cutter</option>
+                                <option value="audio-compressor">Audio Compressor</option>
+                            </optgroup>
+                            <option value="other">Other / General Issue</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="issueType">Issue Type *</label>
+                        <select id="issueType" name="issueType" required>
+                            <option value="">Select issue type...</option>
+                            <option value="tool-not-working">Tool Not Working</option>
+                            <option value="poor-results">Poor Quality Results</option>
+                            <option value="upload-error">File Upload Error</option>
+                            <option value="download-error">Download Error</option>
+                            <option value="slow-processing">Slow Processing</option>
+                            <option value="website-bug">Website Bug</option>
+                            <option value="feature-request">Feature Request</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Your Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email for follow-up">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Issue Summary *</label>
+                        <input type="text" id="subject" name="subject" required placeholder="Brief description of the issue">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Detailed Description *</label>
+                        <textarea id="description" name="description" required placeholder="Please include:
+• Steps to reproduce the issue
+• File types and sizes involved
+• Error messages received
+• Browser and device information"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fileInfo">File Information (if applicable)</label>
+                        <input type="text" id="fileInfo" name="fileInfo" placeholder="File format, size, and any relevant details">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="browserInfo">Browser & Device Information</label>
+                        <input type="text" id="browserInfo" name="browserInfo" placeholder="e.g., Chrome 120 on Windows 10">
+                    </div>
+
+                    <button type="submit" class="btn" id="submitBtn">Submit Report</button>
+                </form>
+            </div>
+
+            <div class="section">
+                <h2>Common Issues & Quick Solutions</h2>
+                <div class="common-issues">
+                    <div class="issue-card">
+                        <h4>File Upload Failed</h4>
+                        <p>• Check file size limits (usually 5MB-100MB)</p>
+                        <p>• Ensure file format is supported</p>
+                        <p>• Try refreshing the page</p>
+                    </div>
+                    <div class="issue-card">
+                        <h4>Poor Quality Results</h4>
+                        <p>• Use higher quality source files</p>
+                        <p>• Check if format conversion affects quality</p>
+                        <p>• Try different tool settings</p>
+                    </div>
+                    <div class="issue-card">
+                        <h4>Download Not Working</h4>
+                        <p>• Check browser download settings</p>
+                        <p>• Disable pop-up blockers</p>
+                        <p>• Try different browser</p>
+                    </div>
+                    <div class="issue-card">
+                        <h4>Tool Not Loading</h4>
+                        <p>• Clear browser cache and cookies</p>
+                        <p>• Check internet connection</p>
+                        <p>• Try incognito/private mode</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-section">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <div class="faq-question">How long does it take to get a response?</div>
+                    <div class="faq-answer">We typically respond within 24-48 hours. Critical issues affecting multiple users are prioritized.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do you provide technical support for specific files?</div>
+                    <div class="faq-answer">Yes, we can help troubleshoot issues with specific file types and provide guidance on optimal settings.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can I request a new tool or feature?</div>
+                    <div class="faq-answer">Absolutely! Use the "Feature Request" issue type and describe what you'd like to see added to ToolsHub.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is there a way to check if an issue is already known?</div>
+                    <div class="faq-answer">Check our status indicators above and monitor our social media for service announcements.</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Other Ways to Contact Us</h2>
+                <div class="contact-methods">
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <h4>Email Support</h4>
+                        <p>support@toolshub.com</p>
+                        <p>For general inquiries and non-urgent issues</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">🐛</div>
+                        <h4>Bug Reports</h4>
+                        <p>bugs@toolshub.com</p>
+                        <p>Direct line for technical bug reports</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">💡</div>
+                        <h4>Feature Requests</h4>
+                        <p>ideas@toolshub.com</p>
+                        <p>Suggest new tools or improvements</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <p>We're committed to providing the best possible experience with ToolsHub. Your feedback helps us improve!</p>
+                <div class="footer-links">
+                    <a href="#">Home</a>
+                    <a href="#">All Tools</a>
+                    <a href="#">About Us</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Help Center</a>
+                </div>
+                <p>&copy; 2025 ToolsHub. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('issueForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.textContent;
+            
+            // Show loading state
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                alert('Thank you for reporting the issue! We have received your submission and will get back to you within 24-48 hours.');
+                document.getElementById('issueForm').reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // Auto-fill browser information
+        window.addEventListener('load', function() {
+            const browserInfo = navigator.userAgent;
+            const browserField = document.getElementById('browserInfo');
+            if (browserField && !browserField.value) {
+                browserField.value = browserInfo;
+            }
+        });
+    </script>
+</body>
+</html>
