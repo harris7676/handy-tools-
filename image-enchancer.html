@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online image enhancer tool. Enhance your images with brightness, contrast, saturation and more adjustments.">
+    <meta name="keywords" content="image enhancer, photo editor, online tool, enhance images">
+    <title>Image Enhancer Tool - Enhance Images Online</title>
+    <style>
+        :root {
+            --primary-color: #4a6ee0;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            background: linear-gradient(135deg, #4a6ee0, #7b4ae0);
+            color: white;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tool-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 1.5rem;
+        }
+
+        .tool-section {
+            margin-bottom: 2rem;
+        }
+
+        .tool-section h2 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .upload-area {
+            border: 2px dashed #ccc;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1.5rem;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(74, 110, 224, 0.05);
+        }
+
+        .upload-area i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .upload-area p {
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #3a5ec7;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .preview-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .preview-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .preview-box {
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .preview-box h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .image-box {
+            height: 300px;
+            border: 1px solid #eee;
+            border-radius: var(--border-radius);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: #f9f9f9;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: 100%;
+            display: none;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .control-group {
+            margin-bottom: 1rem;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .control-group input[type="range"] {
+            width: 100%;
+        }
+
+        .control-value {
+            text-align: center;
+            font-weight: 500;
+            color: var(--primary-color);
+            margin-top: 0.5rem;
+        }
+
+        .preset-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .preset-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            background-color: var(--light-color);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .preset-btn:hover {
+            background-color: #e9ecef;
+        }
+
+        .preset-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .output-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .ad-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 1rem;
+            text-align: center;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ad-label {
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .ad-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px dashed #ccc;
+            border-radius: var(--border-radius);
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .result-container {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        #enhancedImage {
+            max-width: 100%;
+            max-height: 400px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+        }
+
+        .download-info {
+            margin-top: 1rem;
+            color: var(--secondary-color);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 0.75rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .controls {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">ImageEnhancer</div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Tools</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Free Online Image Enhancer</h1>
+            <p>Enhance your images with our easy-to-use tool. Adjust brightness, contrast, saturation and more to improve your photos.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="tool-container">
+                <div class="tool-section">
+                    <h2>Upload Image</h2>
+                    <div class="upload-area" id="uploadArea">
+                        <i>📁</i>
+                        <p>Drag & drop your image here or click to browse</p>
+                        <input type="file" id="imageInput" accept="image/*" class="hidden">
+                        <button class="btn" id="browseBtn">Browse Files</button>
+                    </div>
+                </div>
+
+                <div class="tool-section">
+                    <h2>Enhance Image</h2>
+                    <div class="preview-container">
+                        <div class="preview-box">
+                            <h3>Original Image</h3>
+                            <div class="image-box">
+                                <img id="originalPreview" src="" alt="Original Image" class="preview-image">
+                            </div>
+                        </div>
+                        <div class="preview-box">
+                            <h3>Enhanced Image</h3>
+                            <div class="image-box">
+                                <img id="enhancedPreview" src="" alt="Enhanced Image" class="preview-image">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="preset-buttons">
+                        <div class="preset-btn" data-preset="auto">Auto Enhance</div>
+                        <div class="preset-btn" data-preset="bright">Brighten</div>
+                        <div class="preset-btn" data-preset="vibrant">Vibrant Colors</div>
+                        <div class="preset-btn" data-preset="warm">Warm Tone</div>
+                        <div class="preset-btn" data-preset="cool">Cool Tone</div>
+                    </div>
+
+                    <div class="controls">
+                        <div class="control-group">
+                            <label for="brightness">Brightness</label>
+                            <input type="range" id="brightness" min="-100" max="100" value="0">
+                            <div class="control-value" id="brightnessValue">0</div>
+                        </div>
+                        <div class="control-group">
+                            <label for="contrast">Contrast</label>
+                            <input type="range" id="contrast" min="-100" max="100" value="0">
+                            <div class="control-value" id="contrastValue">0</div>
+                        </div>
+                        <div class="control-group">
+                            <label for="saturation">Saturation</label>
+                            <input type="range" id="saturation" min="-100" max="100" value="0">
+                            <div class="control-value" id="saturationValue">0</div>
+                        </div>
+                        <div class="control-group">
+                            <label for="sharpness">Sharpness</label>
+                            <input type="range" id="sharpness" min="0" max="100" value="0">
+                            <div class="control-value" id="sharpnessValue">0</div>
+                        </div>
+                        <div class="control-group">
+                            <label for="exposure">Exposure</label>
+                            <input type="range" id="exposure" min="-100" max="100" value="0">
+                            <div class="control-value" id="exposureValue">0</div>
+                        </div>
+                        <div class="control-group">
+                            <label for="temperature">Color Temperature</label>
+                            <input type="range" id="temperature" min="-100" max="100" value="0">
+                            <div class="control-value" id="temperatureValue">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tool-section">
+                    <h2>Process Image</h2>
+                    <div class="output-options">
+                        <button class="btn btn-success" id="enhanceBtn">Enhance Image</button>
+                        <button class="btn btn-secondary" id="resetBtn">Reset</button>
+                    </div>
+                </div>
+
+                <div class="tool-section result-container hidden" id="resultContainer">
+                    <h2>Enhanced Image</h2>
+                    <img id="enhancedImage" src="" alt="Enhanced Image">
+                    <div class="download-info">
+                        <p id="fileInfo">File size: 0 KB | Dimensions: 0x0 px</p>
+                        <button class="btn" id="downloadBtn">Download Image</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="ad-container">
+                    <div class="ad-label">Advertisement</div>
+                    <div class="ad-placeholder">
+                        <!-- Replace with your Google AdSense code -->
+                        <p>Ad Space (300x250)</p>
+                    </div>
+                </div>
+                
+                <div class="ad-container">
+                    <div class="ad-label">Advertisement</div>
+                    <div class="ad-placeholder">
+                        <!-- Replace with your Google AdSense code -->
+                        <p>Ad Space (300x600)</p>
+                    </div>
+                </div>
+                
+                <div class="ad-container">
+                    <div class="ad-label">Advertisement</div>
+                    <div class="ad-placeholder">
+                        <!-- Replace with your Google AdSense code -->
+                        <p>Ad Space (300x250)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ImageEnhancer</h3>
+                    <p>Free online tools for image editing and optimization. No registration required.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Image Cropper</a></li>
+                        <li><a href="#">Image Rotator</a></li>
+                        <li><a href="#">Image Converter</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 ImageEnhancer. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const uploadArea = document.getElementById('uploadArea');
+            const imageInput = document.getElementById('imageInput');
+            const browseBtn = document.getElementById('browseBtn');
+            const originalPreview = document.getElementById('originalPreview');
+            const enhancedPreview = document.getElementById('enhancedPreview');
+            const enhanceBtn = document.getElementById('enhanceBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const resultContainer = document.getElementById('resultContainer');
+            const enhancedImage = document.getElementById('enhancedImage');
+            const fileInfo = document.getElementById('fileInfo');
+            const downloadBtn = document.getElementById('downloadBtn');
+            
+            // Control elements
+            const brightness = document.getElementById('brightness');
+            const contrast = document.getElementById('contrast');
+            const saturation = document.getElementById('saturation');
+            const sharpness = document.getElementById('sharpness');
+            const exposure = document.getElementById('exposure');
+            const temperature = document.getElementById('temperature');
+            
+            // Value displays
+            const brightnessValue = document.getElementById('brightnessValue');
+            const contrastValue = document.getElementById('contrastValue');
+            const saturationValue = document.getElementById('saturationValue');
+            const sharpnessValue = document.getElementById('sharpnessValue');
+            const exposureValue = document.getElementById('exposureValue');
+            const temperatureValue = document.getElementById('temperatureValue');
+            
+            // Preset buttons
+            const presetBtns = document.querySelectorAll('.preset-btn');
+            
+            // Variables
+            let originalImage = null;
+            let canvas = document.createElement('canvas');
+            let ctx = canvas.getContext('2d');
+            
+            // Event Listeners
+            browseBtn.addEventListener('click', () => imageInput.click());
+            uploadArea.addEventListener('click', () => imageInput.click());
+            uploadArea.addEventListener('dragover', handleDragOver);
+            uploadArea.addEventListener('drop', handleDrop);
+            imageInput.addEventListener('change', handleImageUpload);
+            
+            // Update value displays
+            brightness.addEventListener('input', () => {
+                brightnessValue.textContent = brightness.value;
+                applyEnhancementPreview();
+            });
+            contrast.addEventListener('input', () => {
+                contrastValue.textContent = contrast.value;
+                applyEnhancementPreview();
+            });
+            saturation.addEventListener('input', () => {
+                saturationValue.textContent = saturation.value;
+                applyEnhancementPreview();
+            });
+            sharpness.addEventListener('input', () => {
+                sharpnessValue.textContent = sharpness.value;
+                applyEnhancementPreview();
+            });
+            exposure.addEventListener('input', () => {
+                exposureValue.textContent = exposure.value;
+                applyEnhancementPreview();
+            });
+            temperature.addEventListener('input', () => {
+                temperatureValue.textContent = temperature.value;
+                applyEnhancementPreview();
+            });
+            
+            // Preset buttons
+            presetBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    applyPreset(this.getAttribute('data-preset'));
+                    
+                    // Update active state
+                    presetBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            enhanceBtn.addEventListener('click', processImage);
+            resetBtn.addEventListener('click', resetTool);
+            downloadBtn.addEventListener('click', downloadImage);
+            
+            // Functions
+            function handleDragOver(e) {
+                e.preventDefault();
+                uploadArea.style.borderColor = 'var(--primary-color)';
+                uploadArea.style.backgroundColor = 'rgba(74, 110, 224, 0.1)';
+            }
+            
+            function handleDrop(e) {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#ccc';
+                uploadArea.style.backgroundColor = 'transparent';
+                
+                if (e.dataTransfer.files.length) {
+                    handleImageFile(e.dataTransfer.files[0]);
+                }
+            }
+            
+            function handleImageUpload(e) {
+                if (e.target.files.length) {
+                    handleImageFile(e.target.files[0]);
+                }
+            }
+            
+            function handleImageFile(file) {
+                if (!file.type.match('image.*')) {
+                    alert('Please select an image file.');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    originalImage = new Image();
+                    originalImage.onload = function() {
+                        originalPreview.src = e.target.result;
+                        originalPreview.style.display = 'block';
+                        resetEnhancement();
+                        applyEnhancementPreview();
+                    };
+                    originalImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+            
+            function applyEnhancementPreview() {
+                if (!originalImage) return;
+                
+                // Set canvas dimensions
+                canvas.width = originalImage.width;
+                canvas.height = originalImage.height;
+                
+                // Draw original image
+                ctx.drawImage(originalImage, 0, 0);
+                
+                // Get image data
+                let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                let data = imageData.data;
+                
+                // Apply enhancements
+                applyBrightnessContrast(data, parseInt(brightness.value), parseInt(contrast.value));
+                applySaturation(data, parseInt(saturation.value));
+                applyExposure(data, parseInt(exposure.value));
+                applyTemperature(data, parseInt(temperature.value));
+                
+                // Put enhanced data back
+                ctx.putImageData(imageData, 0, 0);
+                
+                // Apply sharpness (using convolution)
+                if (parseInt(sharpness.value) > 0) {
+                    applySharpness(parseInt(sharpness.value));
+                }
+                
+                // Update preview
+                enhancedPreview.src = canvas.toDataURL();
+                enhancedPreview.style.display = 'block';
+            }
+            
+            function applyBrightnessContrast(data, brightness, contrast) {
+                let factor = (259 * (contrast + 255)) / (255 * (259 - contrast));
+                
+                for (let i = 0; i < data.length; i += 4) {
+                    // Brightness
+                    data[i] = clamp(data[i] + brightness);
+                    data[i+1] = clamp(data[i+1] + brightness);
+                    data[i+2] = clamp(data[i+2] + brightness);
+                    
+                    // Contrast
+                    data[i] = clamp(factor * (data[i] - 128) + 128);
+                    data[i+1] = clamp(factor * (data[i+1] - 128) + 128);
+                    data[i+2] = clamp(factor * (data[i+2] - 128) + 128);
+                }
+            }
+            
+            function applySaturation(data, saturation) {
+                for (let i = 0; i < data.length; i += 4) {
+                    let r = data[i];
+                    let g = data[i+1];
+                    let b = data[i+2];
+                    
+                    let gray = 0.2989 * r + 0.5870 * g + 0.1140 * b;
+                    
+                    data[i] = clamp(gray + (r - gray) * (1 + saturation / 100));
+                    data[i+1] = clamp(gray + (g - gray) * (1 + saturation / 100));
+                    data[i+2] = clamp(gray + (b - gray) * (1 + saturation / 100));
+                }
+            }
+            
+            function applyExposure(data, exposure) {
+                let factor = 1 + exposure / 100;
+                
+                for (let i = 0; i < data.length; i += 4) {
+                    data[i] = clamp(data[i] * factor);
+                    data[i+1] = clamp(data[i+1] * factor);
+                    data[i+2] = clamp(data[i+2] * factor);
+                }
+            }
+            
+            function applyTemperature(data, temperature) {
+                for (let i = 0; i < data.length; i += 4) {
+                    if (temperature > 0) {
+                        // Warm (increase red, decrease blue)
+                        data[i] = clamp(data[i] + temperature * 0.5);
+                        data[i+2] = clamp(data[i+2] - temperature * 0.5);
+                    } else {
+                        // Cool (decrease red, increase blue)
+                        data[i] = clamp(data[i] + temperature * 0.5);
+                        data[i+2] = clamp(data[i+2] - temperature * 0.5);
+                    }
+                }
+            }
+            
+            function applySharpness(amount) {
+                // Simple sharpening using convolution
+                let weights = [0, -1, 0, -1, 5, -1, 0, -1, 0];
+                let weight = amount / 100;
+                
+                // Adjust weights based on sharpness amount
+                for (let i = 0; i < weights.length; i++) {
+                    if (i === 4) {
+                        weights[i] = 1 + weight * 4;
+                    } else {
+                        weights[i] = -weight;
+                    }
+                }
+                
+                // Apply convolution (simplified)
+                let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                let data = imageData.data;
+                let tempData = new Uint8ClampedArray(data);
+                
+                for (let y = 1; y < canvas.height - 1; y++) {
+                    for (let x = 1; x < canvas.width - 1; x++) {
+                        let i = (y * canvas.width + x) * 4;
+                        
+                        for (let c = 0; c < 3; c++) {
+                            let sum = 0;
+                            for (let ky = -1; ky <= 1; ky++) {
+                                for (let kx = -1; kx <= 1; kx++) {
+                                    let ki = ((y + ky) * canvas.width + (x + kx)) * 4;
+                                    let weight = weights[(ky + 1) * 3 + (kx + 1)];
+                                    sum += tempData[ki + c] * weight;
+                                }
+                            }
+                            data[i + c] = clamp(sum);
+                        }
+                    }
+                }
+                
+                ctx.putImageData(imageData, 0, 0);
+            }
+            
+            function clamp(value) {
+                return Math.max(0, Math.min(255, value));
+            }
+            
+            function applyPreset(preset) {
+                switch(preset) {
+                    case 'auto':
+                        brightness.value = 10;
+                        contrast.value = 15;
+                        saturation.value = 10;
+                        sharpness.value = 20;
+                        exposure.value = 5;
+                        temperature.value = 0;
+                        break;
+                    case 'bright':
+                        brightness.value = 25;
+                        contrast.value = 10;
+                        saturation.value = 5;
+                        sharpness.value = 10;
+                        exposure.value = 15;
+                        temperature.value = 5;
+                        break;
+                    case 'vibrant':
+                        brightness.value = 5;
+                        contrast.value = 10;
+                        saturation.value = 30;
+                        sharpness.value = 15;
+                        exposure.value = 5;
+                        temperature.value = 0;
+                        break;
+                    case 'warm':
+                        brightness.value = 10;
+                        contrast.value = 5;
+                        saturation.value = 10;
+                        sharpness.value = 10;
+                        exposure.value = 5;
+                        temperature.value = 25;
+                        break;
+                    case 'cool':
+                        brightness.value = 10;
+                        contrast.value = 5;
+                        saturation.value = 10;
+                        sharpness.value = 10;
+                        exposure.value = 5;
+                        temperature.value = -25;
+                        break;
+                }
+                
+                // Update value displays
+                brightnessValue.textContent = brightness.value;
+                contrastValue.textContent = contrast.value;
+                saturationValue.textContent = saturation.value;
+                sharpnessValue.textContent = sharpness.value;
+                exposureValue.textContent = exposure.value;
+                temperatureValue.textContent = temperature.value;
+                
+                applyEnhancementPreview();
+            }
+            
+            function processImage() {
+                if (!originalImage) {
+                    alert('Please upload an image first.');
+                    return;
+                }
+                
+                // The enhanced image is already in the canvas
+                const dataURL = canvas.toDataURL('image/png');
+                
+                // Display the result
+                enhancedImage.src = dataURL;
+                resultContainer.classList.remove('hidden');
+                
+                // Calculate file size (approximate)
+                const fileSizeKB = Math.round((dataURL.length * 0.75) / 1024);
+                fileInfo.textContent = `File size: ${fileSizeKB} KB | Dimensions: ${canvas.width}x${canvas.height} px`;
+                
+                // Scroll to result
+                resultContainer.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            function resetEnhancement() {
+                brightness.value = 0;
+                contrast.value = 0;
+                saturation.value = 0;
+                sharpness.value = 0;
+                exposure.value = 0;
+                temperature.value = 0;
+                
+                // Update value displays
+                brightnessValue.textContent = '0';
+                contrastValue.textContent = '0';
+                saturationValue.textContent = '0';
+                sharpnessValue.textContent = '0';
+                exposureValue.textContent = '0';
+                temperatureValue.textContent = '0';
+                
+                // Reset preset buttons
+                presetBtns.forEach(btn => btn.classList.remove('active'));
+            }
+            
+            function resetTool() {
+                imageInput.value = '';
+                originalPreview.src = '';
+                originalPreview.style.display = 'none';
+                enhancedPreview.src = '';
+                enhancedPreview.style.display = 'none';
+                resultContainer.classList.add('hidden');
+                originalImage = null;
+                resetEnhancement();
+            }
+            
+            function downloadImage() {
+                if (!enhancedImage.src) return;
+                
+                const link = document.createElement('a');
+                link.download = 'enhanced-image.png';
+                link.href = enhancedImage.src;
+                link.click();
+            }
+        });
+    </script>
+</body>
+</html>
