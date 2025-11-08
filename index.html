@@ -231,11 +231,16 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         .category-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            text-decoration: none;
+            color: inherit;
         }
 
         .category-icon {
@@ -275,11 +280,17 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         .tool-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: inherit;
         }
 
         .tool-header {
@@ -318,6 +329,7 @@
             text-decoration: none;
             font-weight: 600;
             transition: var(--transition);
+            pointer-events: none;
         }
 
         .tool-btn:hover {
@@ -338,6 +350,13 @@
             padding: 2rem;
             box-shadow: var(--shadow);
             text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .feature-icon {
@@ -557,46 +576,46 @@
             <p>Browse our tools by category to find exactly what you need</p>
         </div>
         <div class="categories">
-            <div class="category-card">
+            <a href="10-image-tools.html" class="category-card">
                 <div class="category-icon">
                     <i class="fas fa-file-image"></i>
                 </div>
                 <h3>Image Tools</h3>
                 <p>Compress, convert, resize, and edit images with our powerful image tools</p>
-                <a href="10-image-tools.html" class="category-link">Explore Tools <i class="fas fa-arrow-right"></i></a>
-            </div>
-            <div class="category-card">
+                <div class="category-link">Explore Tools <i class="fas fa-arrow-right"></i></div>
+            </a>
+            <a href="10-pdf-tools.html" class="category-card">
                 <div class="category-icon">
                     <i class="fas fa-file-pdf"></i>
                 </div>
                 <h3>PDF Tools</h3>
                 <p>Merge, split, compress, and convert PDF files with our PDF utilities</p>
-                <a href="10-pdf-tools.html" class="category-link">Explore Tools <i class="fas fa-arrow-right"></i></a>
-            </div>
-            <div class="category-card">
+                <div class="category-link">Explore Tools <i class="fas fa-arrow-right"></i></div>
+            </a>
+            <a href="10-video-tools.html" class="category-card">
                 <div class="category-icon">
                     <i class="fas fa-file-video"></i>
                 </div>
                 <h3>Video Tools</h3>
                 <p>Convert, compress, and edit video files in various formats</p>
-                <a href="10-video-tools.html" class="category-link">Explore Tools <i class="fas fa-arrow-right"></i></a>
-            </div>
-            <div class="category-card">
+                <div class="category-link">Explore Tools <i class="fas fa-arrow-right"></i></div>
+            </a>
+            <a href="10-audio-tools.html" class="category-card">
                 <div class="category-icon">
                     <i class="fas fa-file-audio"></i>
                 </div>
                 <h3>Audio Tools</h3>
                 <p>Convert, trim, and enhance audio files with our audio tools</p>
-                <a href="10-audio-tools.html" class="category-link">Explore Tools <i class="fas fa-arrow-right"></i></a>
-            </div>
-               <div class="category-card">
-                   <div class="category-icon">
-                       <i class="fas fa-file"></i>
-                   </div>
-                   <h3>File Tools</h3>
-                   <p>Create, convert, and optimize files with our file tools</p>
-                   <a href="10-file-tools.html" class="category-link">Explore Tools <i class="fas fa-arrow-right"></i></a>
-               </div>
+                <div class="category-link">Explore Tools <i class="fas fa-arrow-right"></i></div>
+            </a>
+            <a href="10-file-tools.html" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-file"></i>
+                </div>
+                <h3>File Tools</h3>
+                <p>Create, convert, and optimize files with our file tools</p>
+                <div class="category-link">Explore Tools <i class="fas fa-arrow-right"></i></div>
+            </a>
         </div>
     </section>
 
@@ -607,7 +626,7 @@
             <p>Check out our most frequently used tools</p>
         </div>
         <div class="tools-grid">
-            <div class="tool-card">
+            <a href="img-compress.html" class="tool-card">
                 <div class="tool-header">
                     <div class="tool-icon">
                         <i class="fas fa-compress-arrows-alt"></i>
@@ -616,10 +635,10 @@
                 </div>
                 <div class="tool-content">
                     <p>Reduce image file size without losing quality. Supports JPG, PNG, and WebP formats.</p>
-                    <a href="img-compress.html" class="tool-btn">Use Tool</a>
+                    <span class="tool-btn">Use Tool</span>
                 </div>
-            </div>
-            <div class="tool-card">
+            </a>
+            <a href="pdf-merge.html" class="tool-card">
                 <div class="tool-header">
                     <div class="tool-icon">
                         <i class="fas fa-file-pdf"></i>
@@ -628,10 +647,10 @@
                 </div>
                 <div class="tool-content">
                     <p>Combine multiple PDF files into a single document quickly and easily.</p>
-                    <a href="pdf-merge.html" class="tool-btn">Use Tool</a>
+                    <span class="tool-btn">Use Tool</span>
                 </div>
-            </div>
-            <div class="tool-card">
+            </a>
+            <a href="image-resize.html" class="tool-card">
                 <div class="tool-header">
                     <div class="tool-icon">
                         <i class="fas fa-crop-alt"></i>
@@ -640,10 +659,10 @@
                 </div>
                 <div class="tool-content">
                     <p>Resize your images to specific dimensions while maintaining aspect ratio.</p>
-                    <a href="image-resize.html" class="tool-btn">Use Tool</a>
+                    <span class="tool-btn">Use Tool</span>
                 </div>
-            </div>
-            <div class="tool-card">
+            </a>
+            <a href="pdf-to-word.html" class="tool-card">
                 <div class="tool-header">
                     <div class="tool-icon">
                         <i class="fas fa-file-export"></i>
@@ -652,10 +671,10 @@
                 </div>
                 <div class="tool-content">
                     <p>Convert PDF documents to editable Word files with high accuracy.</p>
-                    <a href="under-construction.html" class="tool-btn">Use Tool</a>
+                    <span class="tool-btn">Use Tool</span>
                 </div>
-            </div>
-            <div class="tool-card">
+            </a>
+            <a href="image-converter.html" class="tool-card">
                 <div class="tool-header">
                     <div class="tool-icon">
                         <i class="fas fa-file-image"></i>
@@ -664,10 +683,10 @@
                 </div>
                 <div class="tool-content">
                     <p>Convert images between different formats like JPG, PNG, WebP, and more.</p>
-                    <a href="image-converter.html" class="tool-btn">Use Tool</a>
+                    <span class="tool-btn">Use Tool</span>
                 </div>
-            </div>
-            <div class="tool-card">
+            </a>
+            <a href="pdf-compress.html" class="tool-card">
                 <div class="tool-header">
                     <div class="tool-icon">
                         <i class="fas fa-file-contract"></i>
@@ -676,9 +695,9 @@
                 </div>
                 <div class="tool-content">
                     <p>Reduce PDF file size for easier sharing and storage.</p>
-                    <a href="under-construction.html" class="tool-btn">Use Tool</a>
+                    <span class="tool-btn">Use Tool</span>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -689,28 +708,28 @@
             <p>We provide the best online tools experience</p>
         </div>
         <div class="features">
-            <div class="feature-card">
+            <div class="feature-card" onclick="window.location.href='features.html#fast'">
                 <div class="feature-icon">
                     <i class="fas fa-bolt"></i>
                 </div>
                 <h3>Fast Processing</h3>
                 <p>Our tools work quickly to process your files without delays.</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card" onclick="window.location.href='features.html#secure'">
                 <div class="feature-icon">
                     <i class="fas fa-shield-alt"></i>
                 </div>
                 <h3>Secure & Private</h3>
                 <p>Your files are processed securely and never stored on our servers.</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card" onclick="window.location.href='features.html#no-install'">
                 <div class="feature-icon">
                     <i class="fas fa-laptop"></i>
                 </div>
                 <h3>No Installation</h3>
                 <p>Use our tools directly in your browser without any downloads.</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card" onclick="window.location.href='features.html#quality'">
                 <div class="feature-icon">
                     <i class="fas fa-gem"></i>
                 </div>
@@ -782,18 +801,6 @@
         document.querySelector('.mobile-menu').addEventListener('click', function() {
             const navLinks = document.querySelector('.nav-links');
             navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
-
-        // Tool card animations
-        const toolCards = document.querySelectorAll('.tool-card');
-        toolCards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-            });
         });
 
         // Advanced Search Functionality
@@ -934,6 +941,11 @@
             if (!searchContainer.contains(e.target)) {
                 resultsContainer.style.display = 'none';
             }
+        });
+
+        // Add cursor pointer to all cards
+        document.querySelectorAll('.category-card, .tool-card, .feature-card').forEach(card => {
+            card.style.cursor = 'pointer';
         });
     </script>
 </body>
