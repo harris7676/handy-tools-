@@ -156,6 +156,48 @@
             background: var(--warning);
         }
 
+        /* Search Results */
+        .search-results {
+            max-width: 800px;
+            margin: 20px auto 0;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            display: none;
+        }
+
+        .result-item {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .result-item:hover {
+            background: #f8f9fa;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .result-item p {
+            color: var(--gray);
+            margin-bottom: 0;
+        }
+
+        .no-results {
+            padding: 2rem;
+            text-align: center;
+            color: var(--gray);
+        }
+
         /* Categories Section */
         .section-title {
             text-align: center;
@@ -503,6 +545,8 @@
                 <input type="text" id="search" placeholder="Search for tools...">
                 <button id="searchBtn"><i class="fas fa-search"></i></button>
             </div>
+            <!-- Search Results Container -->
+            <div id="searchResults" class="search-results"></div>
         </div>
     </section>
 
@@ -740,15 +784,6 @@
             navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
         });
 
-        // Search functionality
-        document.querySelector('.search-box button').addEventListener('click', function() {
-            const searchTerm = document.querySelector('.search-box input').value;
-            if (searchTerm.trim() !== '') {
-                alert(`Searching for: ${searchTerm}`);
-                // In a real implementation, you would redirect to search results
-            }
-        });
-
         // Tool card animations
         const toolCards = document.querySelectorAll('.tool-card');
         toolCards.forEach(card => {
@@ -759,6 +794,146 @@
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0)';
             });
+        });
+
+        // Advanced Search Functionality
+        const allTools = [
+            // Image Tools
+            { name: "Image Compressor", description: "Reduce image file size without losing quality", keywords: "image compress jpg png webp photo picture size reduce", category: "image", url: "img-compress.html" },
+            { name: "Image Resizer", description: "Resize images to specific dimensions", keywords: "image resize dimension size crop photo picture", category: "image", url: "image-resize.html" },
+            { name: "Image Converter", description: "Convert between different image formats", keywords: "image convert jpg png webp gif format change", category: "image", url: "image-converter.html" },
+            { name: "Image Editor", description: "Edit and enhance your images online", keywords: "image edit crop rotate filter enhance photo", category: "image", url: "image-editor.html" },
+            { name: "Background Remover", description: "Remove background from images automatically", keywords: "image background remove transparent erase photo", category: "image", url: "bg-remover.html" },
+            { name: "Watermark Remover", description: "Remove watermarks from images", keywords: "image watermark remove erase clean photo", category: "image", url: "watermark-remover.html" },
+            { name: "Image Cropper", description: "Crop images to perfect dimensions", keywords: "image crop trim cut resize photo", category: "image", url: "image-cropper.html" },
+            { name: "Photo Filter", description: "Apply filters and effects to photos", keywords: "image photo filter effect edit enhance", category: "image", url: "photo-filter.html" },
+            { name: "Image Rotator", description: "Rotate and flip images", keywords: "image rotate flip orientation photo", category: "image", url: "image-rotate.html" },
+            { name: "Image Metadata", description: "View and edit image metadata", keywords: "image metadata exif information details photo", category: "image", url: "image-metadata.html" },
+
+            // PDF Tools
+            { name: "PDF Merger", description: "Combine multiple PDF files into one", keywords: "pdf merge combine join unite documents", category: "pdf", url: "pdf-merge.html" },
+            { name: "PDF to Word", description: "Convert PDF to editable Word document", keywords: "pdf word convert doc docx edit document", category: "pdf", url: "pdf-to-word.html" },
+            { name: "PDF Compressor", description: "Reduce PDF file size", keywords: "pdf compress reduce size optimize shrink", category: "pdf", url: "pdf-compress.html" },
+            { name: "PDF Splitter", description: "Split PDF into multiple files", keywords: "pdf split divide separate extract pages", category: "pdf", url: "pdf-split.html" },
+            { name: "PDF to Excel", description: "Convert PDF tables to Excel spreadsheets", keywords: "pdf excel convert xlsx spreadsheet table", category: "pdf", url: "pdf-to-excel.html" },
+            { name: "PDF to PowerPoint", description: "Convert PDF to PowerPoint presentation", keywords: "pdf powerpoint ppt pptx convert slides", category: "pdf", url: "pdf-to-ppt.html" },
+            { name: "PDF to Image", description: "Convert PDF pages to images", keywords: "pdf image convert jpg png photo", category: "pdf", url: "pdf-to-image.html" },
+            { name: "PDF Editor", description: "Edit PDF documents online", keywords: "pdf edit modify text add remove", category: "pdf", url: "pdf-editor.html" },
+            { name: "PDF Password", description: "Add or remove PDF passwords", keywords: "pdf password security protect unlock", category: "pdf", url: "pdf-password.html" },
+            { name: "PDF Rotate", description: "Rotate PDF pages", keywords: "pdf rotate pages orientation", category: "pdf", url: "pdf-rotate.html" },
+
+            // Video Tools
+            { name: "Video Compressor", description: "Reduce video file size", keywords: "video compress reduce size mp4 avi mov", category: "video", url: "video-compress.html" },
+            { name: "Video Converter", description: "Convert video to different formats", keywords: "video convert mp4 avi mov webm format", category: "video", url: "video-converter.html" },
+            { name: "Video Cutter", description: "Cut and trim video clips", keywords: "video cut trim edit clip shorten", category: "video", url: "video-cutter.html" },
+            { name: "Video Merger", description: "Merge multiple videos together", keywords: "video merge combine join clips", category: "video", url: "video-merger.html" },
+            { name: "Video to GIF", description: "Convert video to animated GIF", keywords: "video gif convert animated create", category: "video", url: "video-to-gif.html" },
+            { name: "Video to MP3", description: "Extract audio from video files", keywords: "video mp3 audio extract sound", category: "video", url: "video-to-mp3.html" },
+            { name: "Video Rotate", description: "Rotate and flip videos", keywords: "video rotate flip orientation", category: "video", url: "video-rotate.html" },
+            { name: "Video Speed", description: "Change video playback speed", keywords: "video speed slow motion fast", category: "video", url: "video-speed.html" },
+            { name: "Video Resizer", description: "Resize video dimensions", keywords: "video resize dimension size scale", category: "video", url: "video-resizer.html" },
+            { name: "Video Watermark", description: "Add watermark to videos", keywords: "video watermark add text logo", category: "video", url: "video-watermark.html" },
+
+            // Audio Tools
+            { name: "Audio Converter", description: "Convert between audio formats", keywords: "audio convert mp3 wav flac aac", category: "audio", url: "audio-converter.html" },
+            { name: "Audio Cutter", description: "Cut and trim audio files", keywords: "audio cut trim edit clip", category: "audio", url: "audio-cutter.html" },
+            { name: "Audio Compressor", description: "Reduce audio file size", keywords: "audio compress reduce size mp3", category: "audio", url: "audio-compress.html" },
+            { name: "Audio Merger", description: "Merge multiple audio files", keywords: "audio merge combine join tracks", category: "audio", url: "audio-merger.html" },
+            { name: "MP3 Cutter", description: "Cut and edit MP3 files", keywords: "mp3 cut trim edit audio", category: "audio", url: "mp3-cutter.html" },
+            { name: "Voice Recorder", description: "Record audio online", keywords: "audio record voice microphone", category: "audio", url: "voice-recorder.html" },
+            { name: "Audio Speed", description: "Change audio playback speed", keywords: "audio speed slow fast tempo", category: "audio", url: "audio-speed.html" },
+            { name: "Volume Booster", description: "Increase audio volume", keywords: "audio volume boost increase loud", category: "audio", url: "volume-booster.html" },
+            { name: "Noise Remover", description: "Remove background noise from audio", keywords: "audio noise remove clean background", category: "audio", url: "noise-remover.html" },
+            { name: "Audio Extractor", description: "Extract audio from video", keywords: "audio extract video sound mp3", category: "audio", url: "audio-extractor.html" },
+
+            // File Tools
+            { name: "File Compressor", description: "Compress files to ZIP format", keywords: "file compress zip rar archive", category: "file", url: "file-compress.html" },
+            { name: "File Converter", description: "Convert between file formats", keywords: "file convert format change", category: "file", url: "file-converter.html" },
+            { name: "File Splitter", description: "Split large files into parts", keywords: "file split divide parts large", category: "file", url: "file-splitter.html" },
+            { name: "File Merger", description: "Merge multiple files together", keywords: "file merge combine join", category: "file", url: "file-merger.html" },
+            { name: "Text Editor", description: "Edit text files online", keywords: "text edit notepad document", category: "file", url: "text-editor.html" },
+            { name: "QR Code Generator", description: "Create QR codes from text/URL", keywords: "qr code generate create scan", category: "file", url: "qr-generator.html" },
+            { name: "Password Generator", description: "Generate strong passwords", keywords: "password generate create strong secure", category: "file", url: "password-generator.html" },
+            { name: "Unit Converter", description: "Convert between different units", keywords: "unit convert measurement length weight", category: "file", url: "unit-converter.html" },
+            { name: "Color Picker", description: "Pick colors from images", keywords: "color picker select hex rgb", category: "file", url: "color-picker.html" },
+            { name: "Random Number", description: "Generate random numbers", keywords: "random number generate pick", category: "file", url: "random-number.html" }
+        ];
+
+        // Search functionality
+        document.getElementById('searchBtn').addEventListener('click', performSearch);
+        document.getElementById('search').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Real-time search as user types
+        document.getElementById('search').addEventListener('input', function(e) {
+            if (this.value.length > 2) {
+                performSearch();
+            } else {
+                document.getElementById('searchResults').style.display = 'none';
+            }
+        });
+
+        function performSearch() {
+            const searchTerm = document.getElementById('search').value.toLowerCase().trim();
+            const resultsContainer = document.getElementById('searchResults');
+            
+            if (searchTerm === '') {
+                resultsContainer.style.display = 'none';
+                return;
+            }
+
+            // Search through all tools
+            const results = allTools.filter(tool => {
+                return tool.name.toLowerCase().includes(searchTerm) ||
+                       tool.description.toLowerCase().includes(searchTerm) ||
+                       tool.keywords.toLowerCase().includes(searchTerm) ||
+                       tool.category.toLowerCase().includes(searchTerm);
+            });
+
+            displaySearchResults(results, searchTerm);
+        }
+
+        function displaySearchResults(results, searchTerm) {
+            const resultsContainer = document.getElementById('searchResults');
+            
+            if (results.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="no-results">
+                        <h4>No tools found for "${searchTerm}"</h4>
+                        <p>Try searching for: image, pdf, video, audio, file</p>
+                    </div>
+                `;
+                resultsContainer.style.display = 'block';
+                return;
+            }
+
+            let resultsHTML = '';
+            
+            results.forEach(tool => {
+                resultsHTML += `
+                    <div class="result-item" onclick="window.location.href='${tool.url}'">
+                        <h4>${tool.name}</h4>
+                        <p>${tool.description}</p>
+                        <small>Category: ${tool.category.toUpperCase()}</small>
+                    </div>
+                `;
+            });
+
+            resultsContainer.innerHTML = resultsHTML;
+            resultsContainer.style.display = 'block';
+        }
+
+        // Close search results when clicking outside
+        document.addEventListener('click', function(e) {
+            const searchContainer = document.querySelector('.search-box');
+            const resultsContainer = document.getElementById('searchResults');
+            
+            if (!searchContainer.contains(e.target)) {
+                resultsContainer.style.display = 'none';
+            }
         });
     </script>
 </body>
