@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online watermark tool. Add text or image watermarks to your photos easily with our intuitive tool.">
+    <meta name="keywords" content="watermark tool, photo watermark, image protection, online tool, add watermark">
+    <meta name="author" content="Watermark Tool">
+    <title>Watermark Tool - Add Watermarks to Images Online</title>
+    <link rel="canonical" href="https://example.com/watermark-tool">
+    <style>
+        :root {
+            --primary-color: #4a6ee0;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            background: linear-gradient(135deg, #4a6ee0, #7b4ae0);
+            color: white;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tool-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 1.5rem;
+        }
+
+        .tool-section {
+            margin-bottom: 2rem;
+        }
+
+        .tool-section h2 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .upload-area {
+            border: 2px dashed #ccc;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1.5rem;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(74, 110, 224, 0.05);
+        }
+
+        .upload-area i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .upload-area p {
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #3a5ec7;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .preview-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .preview-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .preview-box {
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .preview-box h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .image-box {
+            height: 400px;
+            border: 1px solid #eee;
+            border-radius: var(--border-radius);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            position: relative;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: 100%;
+            display: none;
+        }
+
+        .watermark-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .watermark-element {
+            position: absolute;
+            cursor: move;
+            user-select: none;
+            border: 2px dashed transparent;
+            transition: border-color 0.3s;
+            min-width: 50px;
+            min-height: 50px;
+        }
+
+        .watermark-element:hover {
+            border-color: var(--primary-color);
+        }
+
+        .watermark-element.active {
+            border-color: var(--primary-color);
+        }
+
+        .text-watermark {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        .image-watermark {
+            opacity: 0.7;
+        }
+
+        .image-watermark img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .resize-handle {
+            position: absolute;
+            background: var(--primary-color);
+            border: 2px solid white;
+            z-index: 10;
+        }
+
+        /* Corner handles */
+        .handle-nw {
+            top: -6px;
+            left: -6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            cursor: nw-resize;
+        }
+
+        .handle-ne {
+            top: -6px;
+            right: -6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            cursor: ne-resize;
+        }
+
+        .handle-sw {
+            bottom: -6px;
+            left: -6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            cursor: sw-resize;
+        }
+
+        .handle-se {
+            bottom: -6px;
+            right: -6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            cursor: se-resize;
+        }
+
+        /* Side handles */
+        .handle-n {
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 8px;
+            border-radius: 4px;
+            cursor: n-resize;
+        }
+
+        .handle-s {
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 8px;
+            border-radius: 4px;
+            cursor: s-resize;
+        }
+
+        .handle-w {
+            left: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 30px;
+            border-radius: 4px;
+            cursor: w-resize;
+        }
+
+        .handle-e {
+            right: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 30px;
+            border-radius: 4px;
+            cursor: e-resize;
+        }
+
+        .watermark-type-selector {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .watermark-type {
+            flex: 1;
+            padding: 0.75rem;
+            text-align: center;
+            background-color: var(--light-color);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .watermark-type.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .watermark-controls {
+            display: none;
+        }
+
+        .watermark-controls.active {
+            display: block;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .control-group {
+            margin-bottom: 1rem;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .control-group input[type="range"],
+        .control-group input[type="text"],
+        .control-group input[type="color"],
+        .control-group select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+        }
+
+        .control-value {
+            text-align: center;
+            font-weight: 500;
+            color: var(--primary-color);
+            margin-top: 0.5rem;
+        }
+
+        .manual-controls {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+        }
+
+        .manual-controls h4 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .manual-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .manual-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .manual-btn:hover {
+            background: var(--light-color);
+        }
+
+        .output-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .ad-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 1rem;
+            text-align: center;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ad-label {
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .ad-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px dashed #ccc;
+            border-radius: var(--border-radius);
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .result-container {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        #watermarkedImage {
+            max-width: 100%;
+            max-height: 400px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+        }
+
+        .download-info {
+            margin-top: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .instructions {
+            background: #e7f3ff;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .instructions h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 0.75rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .output-options {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">WatermarkTool</div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Tools</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Free Online Watermark Tool</h1>
+            <p>Protect your images by adding text or logo watermarks. Drag, resize, and customize your watermarks easily.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="tool-container">
+                <div class="tool-section">
+                    <h2>Upload Image</h2>
+                    <div class="upload-area" id="uploadArea">
+                        <i>📁</i>
+                        <p>Drag & drop your image here or click to browse</p>
+                        <input type="file" id="imageInput" accept="image/*" class="hidden">
+                        <button class="btn" id="browseBtn">Browse Files</button>
+                    </div>
+                </div>
+
+                <div class="tool-section">
+                    <h2>Add Watermark</h2>
+                    
+                    <div class="instructions">
+                        <h4>How to Use:</h4>
+                        <p>• Drag the watermark to move it</p>
+                        <p>• Drag corners (◉) to resize proportionally</p>
+                        <p>• Drag sides (━ ┃) to resize one direction</p>
+                        <p>• Use buttons below for quick actions</p>
+                    </div>
+
+                    <div class="preview-container">
+                        <div class="preview-box">
+                            <h3>Original Image</h3>
+                            <div class="image-box">
+                                <img id="originalPreview" src="" alt="Original Image" class="preview-image">
+                            </div>
+                        </div>
+                        <div class="preview-box">
+                            <h3>Watermarked Preview</h3>
+                            <div class="image-box" id="watermarkPreviewBox">
+                                <img id="watermarkedPreview" src="" alt="Watermarked Image" class="preview-image">
+                                <div class="watermark-overlay" id="watermarkOverlay"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="watermark-type-selector">
+                        <div class="watermark-type active" data-type="text">Text Watermark</div>
+                        <div class="watermark-type" data-type="image">Image Watermark</div>
+                    </div>
+
+                    <div class="watermark-controls active" id="textWatermarkControls">
+                        <div class="controls">
+                            <div class="control-group">
+                                <label for="watermarkText">Watermark Text</label>
+                                <input type="text" id="watermarkText" value="Your Watermark" placeholder="Enter watermark text">
+                            </div>
+                            <div class="control-group">
+                                <label for="textColor">Text Color</label>
+                                <input type="color" id="textColor" value="#ffffff">
+                            </div>
+                            <div class="control-group">
+                                <label for="fontSize">Font Size</label>
+                                <input type="range" id="fontSize" min="10" max="100" value="24">
+                                <div class="control-value" id="fontSizeValue">24px</div>
+                            </div>
+                            <div class="control-group">
+                                <label for="textOpacity">Opacity</label>
+                                <input type="range" id="textOpacity" min="10" max="100" value="70">
+                                <div class="control-value" id="textOpacityValue">70%</div>
+                            </div>
+                            <div class="control-group">
+                                <label for="fontFamily">Font Family</label>
+                                <select id="fontFamily">
+                                    <option value="Arial">Arial</option>
+                                    <option value="Helvetica">Helvetica</option>
+                                    <option value="Times New Roman">Times New Roman</option>
+                                    <option value="Courier New">Courier New</option>
+                                    <option value="Verdana">Verdana</option>
+                                    <option value="Georgia">Georgia</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="textAngle">Rotation Angle</label>
+                                <input type="range" id="textAngle" min="0" max="360" value="0">
+                                <div class="control-value" id="textAngleValue">0°</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="watermark-controls" id="imageWatermarkControls">
+                        <div class="controls">
+                            <div class="control-group">
+                                <label for="watermarkImage">Watermark Image</label>
+                                <input type="file" id="watermarkImage" accept="image/*">
+                            </div>
+                            <div class="control-group">
+                                <label for="imageOpacity">Opacity</label>
+                                <input type="range" id="imageOpacity" min="10" max="100" value="70">
+                                <div class="control-value" id="imageOpacityValue">70%</div>
+                            </div>
+                            <div class="control-group">
+                                <label for="imageAngle">Rotation Angle</label>
+                                <input type="range" id="imageAngle" min="0" max="360" value="0">
+                                <div class="control-value" id="imageAngleValue">0°</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="manual-controls">
+                        <h4>Manual Controls</h4>
+                        <div class="manual-buttons">
+                            <button class="manual-btn" id="addWatermarkBtn">Add Watermark</button>
+                            <button class="manual-btn" id="removeWatermarkBtn">Remove Watermark</button>
+                            <button class="manual-btn" id="centerWatermarkBtn">Center Watermark</button>
+                            <button class="manual-btn" id="resetPositionBtn">Reset Size & Position</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tool-section">
+                    <h2>Apply Watermark</h2>
+                    <div class="output-options">
+                        <button class="btn btn-success" id="applyBtn">Apply Watermark</button>
+                        <button class="btn btn-secondary" id="resetBtn">Reset All</button>
+                    </div>
+                </div>
+
+                <div class="tool-section result-container hidden" id="resultContainer">
+                    <h2>Watermarked Image</h2>
+                    <img id="watermarkedImage" src="" alt="Watermarked Image">
+                    <div class="download-info">
+                        <p id="fileInfo">File size: 0 KB | Dimensions: 0x0 px</p>
+                        <button class="btn" id="downloadBtn">Download Image</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="ad-container">
+                    <div class="ad-label">Advertisement</div>
+                    <div class="ad-placeholder">
+                        <p>Ad Space (300x250)</p>
+                    </div>
+                </div>
+                
+                <div class="ad-container">
+                    <div class="ad-label">Advertisement</div>
+                    <div class="ad-placeholder">
+                        <p>Ad Space (300x600)</p>
+                    </div>
+                </div>
+                
+                <div class="ad-container">
+                    <div class="ad-label">Advertisement</div>
+                    <div class="ad-placeholder">
+                        <p>Ad Space (300x250)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>WatermarkTool</h3>
+                    <p>Free online tools for image protection and editing. No registration required.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Image Cropper</a></li>
+                        <li><a href="#">Image Resizer</a></li>
+                        <li><a href="#">Image Converter</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 WatermarkTool. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const uploadArea = document.getElementById('uploadArea');
+            const imageInput = document.getElementById('imageInput');
+            const browseBtn = document.getElementById('browseBtn');
+            const originalPreview = document.getElementById('originalPreview');
+            const watermarkedPreview = document.getElementById('watermarkedPreview');
+            const watermarkOverlay = document.getElementById('watermarkOverlay');
+            const applyBtn = document.getElementById('applyBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const resultContainer = document.getElementById('resultContainer');
+            const watermarkedImage = document.getElementById('watermarkedImage');
+            const fileInfo = document.getElementById('fileInfo');
+            const downloadBtn = document.getElementById('downloadBtn');
+            
+            // Manual control buttons
+            const addWatermarkBtn = document.getElementById('addWatermarkBtn');
+            const removeWatermarkBtn = document.getElementById('removeWatermarkBtn');
+            const centerWatermarkBtn = document.getElementById('centerWatermarkBtn');
+            const resetPositionBtn = document.getElementById('resetPositionBtn');
+            
+            // Watermark type elements
+            const watermarkTypes = document.querySelectorAll('.watermark-type');
+            const textWatermarkControls = document.getElementById('textWatermarkControls');
+            const imageWatermarkControls = document.getElementById('imageWatermarkControls');
+            
+            // Text watermark controls
+            const watermarkText = document.getElementById('watermarkText');
+            const textColor = document.getElementById('textColor');
+            const fontSize = document.getElementById('fontSize');
+            const fontSizeValue = document.getElementById('fontSizeValue');
+            const textOpacity = document.getElementById('textOpacity');
+            const textOpacityValue = document.getElementById('textOpacityValue');
+            const fontFamily = document.getElementById('fontFamily');
+            const textAngle = document.getElementById('textAngle');
+            const textAngleValue = document.getElementById('textAngleValue');
+            
+            // Image watermark controls
+            const watermarkImage = document.getElementById('watermarkImage');
+            const imageOpacity = document.getElementById('imageOpacity');
+            const imageOpacityValue = document.getElementById('imageOpacityValue');
+            const imageAngle = document.getElementById('imageAngle');
+            const imageAngleValue = document.getElementById('imageAngleValue');
+            
+            // Variables
+            let originalImage = null;
+            let watermarkImageData = null;
+            let currentWatermarkType = 'text';
+            let currentWatermarkElement = null;
+            let isDragging = false;
+            let isResizing = false;
+            let startX, startY;
+            let startWidth, startHeight;
+            let startLeft, startTop;
+            let activeHandle = null;
+            let canvas = document.createElement('canvas');
+            let ctx = canvas.getContext('2d');
+            
+            // Event Listeners
+            browseBtn.addEventListener('click', () => imageInput.click());
+            uploadArea.addEventListener('click', () => imageInput.click());
+            uploadArea.addEventListener('dragover', handleDragOver);
+            uploadArea.addEventListener('drop', handleDrop);
+            imageInput.addEventListener('change', handleImageUpload);
+            
+            // Watermark type selection
+            watermarkTypes.forEach(type => {
+                type.addEventListener('click', function() {
+                    const type = this.getAttribute('data-type');
+                    setWatermarkType(type);
+                    
+                    // Update active state
+                    watermarkTypes.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Text watermark controls
+            watermarkText.addEventListener('input', updateWatermarkElement);
+            textColor.addEventListener('input', updateWatermarkElement);
+            fontSize.addEventListener('input', function() {
+                fontSizeValue.textContent = `${this.value}px`;
+                updateWatermarkElement();
+            });
+            textOpacity.addEventListener('input', function() {
+                textOpacityValue.textContent = `${this.value}%`;
+                updateWatermarkElement();
+            });
+            fontFamily.addEventListener('change', updateWatermarkElement);
+            textAngle.addEventListener('input', function() {
+                textAngleValue.textContent = `${this.value}°`;
+                updateWatermarkElement();
+            });
+            
+            // Image watermark controls
+            watermarkImage.addEventListener('change', handleWatermarkImageUpload);
+            imageOpacity.addEventListener('input', function() {
+                imageOpacityValue.textContent = `${this.value}%`;
+                updateWatermarkElement();
+            });
+            imageAngle.addEventListener('input', function() {
+                imageAngleValue.textContent = `${this.value}°`;
+                updateWatermarkElement();
+            });
+            
+            // Manual control buttons
+            addWatermarkBtn.addEventListener('click', addWatermark);
+            removeWatermarkBtn.addEventListener('click', removeWatermark);
+            centerWatermarkBtn.addEventListener('click', centerWatermark);
+            resetPositionBtn.addEventListener('click', resetWatermarkPosition);
+            
+            applyBtn.addEventListener('click', processImage);
+            resetBtn.addEventListener('click', resetTool);
+            downloadBtn.addEventListener('click', downloadImage);
+            
+            // Functions
+            function handleDragOver(e) {
+                e.preventDefault();
+                uploadArea.style.borderColor = 'var(--primary-color)';
+                uploadArea.style.backgroundColor = 'rgba(74, 110, 224, 0.1)';
+            }
+            
+            function handleDrop(e) {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#ccc';
+                uploadArea.style.backgroundColor = 'transparent';
+                
+                if (e.dataTransfer.files.length) {
+                    handleImageFile(e.dataTransfer.files[0]);
+                }
+            }
+            
+            function handleImageUpload(e) {
+                if (e.target.files.length) {
+                    handleImageFile(e.target.files[0]);
+                }
+            }
+            
+            function handleImageFile(file) {
+                if (!file.type.match('image.*')) {
+                    alert('Please select an image file.');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    originalImage = new Image();
+                    originalImage.onload = function() {
+                        originalPreview.src = e.target.result;
+                        originalPreview.style.display = 'block';
+                        watermarkedPreview.src = e.target.result;
+                        watermarkedPreview.style.display = 'block';
+                        
+                        // Auto-add watermark when image is loaded
+                        setTimeout(addWatermark, 100);
+                    };
+                    originalImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+            
+            function handleWatermarkImageUpload(e) {
+                if (e.target.files.length) {
+                    const file = e.target.files[0];
+                    if (!file.type.match('image.*')) {
+                        alert('Please select an image file.');
+                        return;
+                    }
+                    
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        watermarkImageData = new Image();
+                        watermarkImageData.onload = function() {
+                            // If we're currently in image watermark mode, update the element
+                            if (currentWatermarkType === 'image' && currentWatermarkElement) {
+                                updateWatermarkElement();
+                            } else if (currentWatermarkType === 'image') {
+                                addWatermark();
+                            }
+                        };
+                        watermarkImageData.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+            
+            function setWatermarkType(type) {
+                currentWatermarkType = type;
+                
+                if (type === 'text') {
+                    textWatermarkControls.classList.add('active');
+                    imageWatermarkControls.classList.remove('active');
+                } else {
+                    textWatermarkControls.classList.remove('active');
+                    imageWatermarkControls.classList.add('active');
+                }
+                
+                // Update existing watermark if it exists
+                if (currentWatermarkElement) {
+                    updateWatermarkElement();
+                } else {
+                    addWatermark();
+                }
+            }
+            
+            function addWatermark() {
+                if (!originalImage) {
+                    alert('Please upload an image first.');
+                    return;
+                }
+                
+                if (currentWatermarkType === 'image' && !watermarkImageData) {
+                    alert('Please upload a watermark image first.');
+                    return;
+                }
+                
+                // Remove existing watermark
+                removeWatermark();
+                
+                // Create new watermark element
+                const watermarkElement = document.createElement('div');
+                watermarkElement.className = `watermark-element ${currentWatermarkType}-watermark active`;
+                
+                if (currentWatermarkType === 'text') {
+                    watermarkElement.textContent = watermarkText.value || 'Your Watermark';
+                    watermarkElement.style.color = textColor.value;
+                    watermarkElement.style.fontSize = `${fontSize.value}px`;
+                    watermarkElement.style.opacity = parseInt(textOpacity.value) / 100;
+                    watermarkElement.style.fontFamily = fontFamily.value;
+                    watermarkElement.style.transform = `rotate(${textAngle.value}deg)`;
+                    watermarkElement.style.padding = '10px';
+                    watermarkElement.style.background = 'rgba(0, 0, 0, 0.3)';
+                    watermarkElement.style.borderRadius = '4px';
+                    
+                    // Set initial size for text
+                    watermarkElement.style.width = 'auto';
+                    watermarkElement.style.height = 'auto';
+                } else {
+                    const img = document.createElement('img');
+                    img.src = watermarkImageData.src;
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.objectFit = 'contain';
+                    watermarkElement.appendChild(img);
+                    watermarkElement.style.opacity = parseInt(imageOpacity.value) / 100;
+                    watermarkElement.style.transform = `rotate(${imageAngle.value}deg)`;
+                    
+                    // Set initial size for image
+                    watermarkElement.style.width = '150px';
+                    watermarkElement.style.height = '150px';
+                }
+                
+                // Add resize handles (8 handles - 4 corners + 4 sides)
+                addResizeHandles(watermarkElement);
+                
+                // Set initial position (center)
+                centerWatermark();
+                
+                // Add event listeners for dragging
+                watermarkElement.addEventListener('mousedown', startDrag);
+                
+                watermarkOverlay.appendChild(watermarkElement);
+                currentWatermarkElement = watermarkElement;
+                
+                // Add global mouse event listeners
+                document.addEventListener('mousemove', drag);
+                document.addEventListener('mouseup', stopDrag);
+            }
+            
+            function addResizeHandles(element) {
+                const handles = [
+                    { class: 'handle-nw', cursor: 'nw-resize' },
+                    { class: 'handle-ne', cursor: 'ne-resize' },
+                    { class: 'handle-sw', cursor: 'sw-resize' },
+                    { class: 'handle-se', cursor: 'se-resize' },
+                    { class: 'handle-n', cursor: 'n-resize' },
+                    { class: 'handle-s', cursor: 's-resize' },
+                    { class: 'handle-w', cursor: 'w-resize' },
+                    { class: 'handle-e', cursor: 'e-resize' }
+                ];
+                
+                handles.forEach(handle => {
+                    const handleElement = document.createElement('div');
+                    handleElement.className = `resize-handle ${handle.class}`;
+                    handleElement.style.cursor = handle.cursor;
+                    handleElement.addEventListener('mousedown', (e) => {
+                        e.stopPropagation();
+                        startResize(e, handle.class);
+                    });
+                    element.appendChild(handleElement);
+                });
+            }
+            
+            function removeWatermark() {
+                if (currentWatermarkElement) {
+                    currentWatermarkElement.remove();
+                    currentWatermarkElement = null;
+                }
+            }
+            
+            function centerWatermark() {
+                if (currentWatermarkElement) {
+                    const container = document.getElementById('watermarkPreviewBox');
+                    const containerRect = container.getBoundingClientRect();
+                    const elementRect = currentWatermarkElement.getBoundingClientRect();
+                    
+                    const left = (containerRect.width - elementRect.width) / 2;
+                    const top = (containerRect.height - elementRect.height) / 2;
+                    
+                    currentWatermarkElement.style.left = `${left}px`;
+                    currentWatermarkElement.style.top = `${top}px`;
+                }
+            }
+            
+            function resetWatermarkPosition() {
+                if (currentWatermarkElement) {
+                    if (currentWatermarkType === 'text') {
+                        currentWatermarkElement.style.width = 'auto';
+                        currentWatermarkElement.style.height = 'auto';
+                        currentWatermarkElement.style.fontSize = `${fontSize.value}px`;
+                    } else {
+                        currentWatermarkElement.style.width = '150px';
+                        currentWatermarkElement.style.height = '150px';
+                    }
+                    centerWatermark();
+                }
+            }
+            
+            function updateWatermarkElement() {
+                if (!currentWatermarkElement) return;
+                
+                if (currentWatermarkType === 'text') {
+                    currentWatermarkElement.textContent = watermarkText.value || 'Your Watermark';
+                    currentWatermarkElement.style.color = textColor.value;
+                    currentWatermarkElement.style.fontSize = `${fontSize.value}px`;
+                    currentWatermarkElement.style.opacity = parseInt(textOpacity.value) / 100;
+                    currentWatermarkElement.style.fontFamily = fontFamily.value;
+                    
+                    // Preserve position while updating rotation
+                    const left = currentWatermarkElement.style.left;
+                    const top = currentWatermarkElement.style.top;
+                    currentWatermarkElement.style.transform = `rotate(${textAngle.value}deg)`;
+                    currentWatermarkElement.style.left = left;
+                    currentWatermarkElement.style.top = top;
+                } else {
+                    currentWatermarkElement.style.opacity = parseInt(imageOpacity.value) / 100;
+                    
+                    // Preserve position while updating rotation
+                    const left = currentWatermarkElement.style.left;
+                    const top = currentWatermarkElement.style.top;
+                    currentWatermarkElement.style.transform = `rotate(${imageAngle.value}deg)`;
+                    currentWatermarkElement.style.left = left;
+                    currentWatermarkElement.style.top = top;
+                    
+                    // Update image source if needed
+                    if (watermarkImageData && currentWatermarkElement.querySelector('img')) {
+                        currentWatermarkElement.querySelector('img').src = watermarkImageData.src;
+                    }
+                }
+            }
+            
+            function startDrag(e) {
+                if (e.target.classList.contains('resize-handle')) return;
+                
+                isDragging = true;
+                const element = currentWatermarkElement;
+                const rect = element.getBoundingClientRect();
+                const containerRect = watermarkOverlay.getBoundingClientRect();
+                
+                startX = e.clientX - rect.left;
+                startY = e.clientY - rect.top;
+                
+                element.style.cursor = 'grabbing';
+                e.preventDefault();
+            }
+            
+            function startResize(e, handle) {
+                e.stopPropagation();
+                isResizing = true;
+                activeHandle = handle;
+                
+                const element = currentWatermarkElement;
+                const rect = element.getBoundingClientRect();
+                const containerRect = watermarkOverlay.getBoundingClientRect();
+                
+                startWidth = rect.width;
+                startHeight = rect.height;
+                startLeft = parseFloat(element.style.left) || 0;
+                startTop = parseFloat(element.style.top) || 0;
+                startX = e.clientX;
+                startY = e.clientY;
+                
+                document.body.style.userSelect = 'none';
+                document.body.style.cursor = getComputedStyle(e.target).cursor;
+            }
+            
+            function drag(e) {
+                if (!currentWatermarkElement) return;
+                
+                const containerRect = watermarkOverlay.getBoundingClientRect();
+                const element = currentWatermarkElement;
+                
+                if (isDragging) {
+                    let newLeft = e.clientX - startX - containerRect.left;
+                    let newTop = e.clientY - startY - containerRect.top;
+                    
+                    // Constrain within container
+                    const elementRect = element.getBoundingClientRect();
+                    newLeft = Math.max(0, Math.min(newLeft, containerRect.width - elementRect.width));
+                    newTop = Math.max(0, Math.min(newTop, containerRect.height - elementRect.height));
+                    
+                    element.style.left = `${newLeft}px`;
+                    element.style.top = `${newTop}px`;
+                    
+                } else if (isResizing) {
+                    const deltaX = e.clientX - startX;
+                    const deltaY = e.clientY - startY;
+                    
+                    let newWidth = startWidth;
+                    let newHeight = startHeight;
+                    let newLeft = startLeft;
+                    let newTop = startTop;
+                    
+                    const minSize = 30;
+                    const maxSize = Math.min(containerRect.width, containerRect.height);
+                    
+                    // Handle different resize directions
+                    switch(activeHandle) {
+                        // Corners - maintain aspect ratio for images
+                        case 'handle-se':
+                            newWidth = Math.max(minSize, Math.min(startWidth + deltaX, maxSize));
+                            if (currentWatermarkType === 'image') {
+                                const aspectRatio = startHeight / startWidth;
+                                newHeight = newWidth * aspectRatio;
+                            } else {
+                                newHeight = Math.max(minSize, Math.min(startHeight + deltaY, maxSize));
+                            }
+                            break;
+                            
+                        case 'handle-sw':
+                            newWidth = Math.max(minSize, Math.min(startWidth - deltaX, maxSize));
+                            if (currentWatermarkType === 'image') {
+                                const aspectRatio = startHeight / startWidth;
+                                newHeight = newWidth * aspectRatio;
+                            } else {
+                                newHeight = Math.max(minSize, Math.min(startHeight + deltaY, maxSize));
+                            }
+                            newLeft = startLeft + (startWidth - newWidth);
+                            break;
+                            
+                        case 'handle-ne':
+                            newWidth = Math.max(minSize, Math.min(startWidth + deltaX, maxSize));
+                            if (currentWatermarkType === 'image') {
+                                const aspectRatio = startHeight / startWidth;
+                                newHeight = newWidth * aspectRatio;
+                            } else {
+                                newHeight = Math.max(minSize, Math.min(startHeight - deltaY, maxSize));
+                            }
+                            newTop = startTop + (startHeight - newHeight);
+                            break;
+                            
+                        case 'handle-nw':
+                            newWidth = Math.max(minSize, Math.min(startWidth - deltaX, maxSize));
+                            if (currentWatermarkType === 'image') {
+                                const aspectRatio = startHeight / startWidth;
+                                newHeight = newWidth * aspectRatio;
+                            } else {
+                                newHeight = Math.max(minSize, Math.min(startHeight - deltaY, maxSize));
+                            }
+                            newLeft = startLeft + (startWidth - newWidth);
+                            newTop = startTop + (startHeight - newHeight);
+                            break;
+                            
+                        // Sides - resize only in one direction
+                        case 'handle-n':
+                            newHeight = Math.max(minSize, Math.min(startHeight - deltaY, maxSize));
+                            newTop = startTop + (startHeight - newHeight);
+                            break;
+                            
+                        case 'handle-s':
+                            newHeight = Math.max(minSize, Math.min(startHeight + deltaY, maxSize));
+                            break;
+                            
+                        case 'handle-w':
+                            newWidth = Math.max(minSize, Math.min(startWidth - deltaX, maxSize));
+                            newLeft = startLeft + (startWidth - newWidth);
+                            break;
+                            
+                        case 'handle-e':
+                            newWidth = Math.max(minSize, Math.min(startWidth + deltaX, maxSize));
+                            break;
+                    }
+                    
+                    // Apply constraints
+                    newLeft = Math.max(0, Math.min(newLeft, containerRect.width - newWidth));
+                    newTop = Math.max(0, Math.min(newTop, containerRect.height - newHeight));
+                    
+                    element.style.width = `${newWidth}px`;
+                    element.style.height = `${newHeight}px`;
+                    element.style.left = `${newLeft}px`;
+                    element.style.top = `${newTop}px`;
+                }
+            }
+            
+            function stopDrag() {
+                isDragging = false;
+                isResizing = false;
+                activeHandle = null;
+                
+                if (currentWatermarkElement) {
+                    currentWatermarkElement.style.cursor = 'move';
+                }
+                
+                document.body.style.userSelect = 'auto';
+                document.body.style.cursor = 'default';
+            }
+            
+            function processImage() {
+                if (!originalImage) {
+                    alert('Please upload an image first.');
+                    return;
+                }
+                
+                if (!currentWatermarkElement) {
+                    alert('Please add a watermark first.');
+                    return;
+                }
+                
+                // Set canvas dimensions to match original image
+                canvas.width = originalImage.width;
+                canvas.height = originalImage.height;
+                
+                // Draw original image
+                ctx.drawImage(originalImage, 0, 0, canvas.width, canvas.height);
+                
+                // Apply watermark
+                applyWatermarkToCanvas();
+                
+                // Convert to data URL
+                const dataURL = canvas.toDataURL('image/png');
+                
+                // Display the result
+                watermarkedImage.src = dataURL;
+                resultContainer.classList.remove('hidden');
+                
+                // Calculate file size (approximate)
+                const fileSizeKB = Math.round((dataURL.length * 0.75) / 1024);
+                fileInfo.textContent = `File size: ${fileSizeKB} KB | Dimensions: ${canvas.width}x${canvas.height} px`;
+                
+                // Scroll to result
+                resultContainer.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            function applyWatermarkToCanvas() {
+                if (!currentWatermarkElement) return;
+                
+                const watermarkRect = currentWatermarkElement.getBoundingClientRect();
+                const containerRect = watermarkOverlay.getBoundingClientRect();
+                
+                // Calculate scale factors
+                const scaleX = canvas.width / containerRect.width;
+                const scaleY = canvas.height / containerRect.height;
+                
+                // Calculate position and size on canvas
+                const x = (watermarkRect.left - containerRect.left) * scaleX;
+                const y = (watermarkRect.top - containerRect.top) * scaleY;
+                const width = watermarkRect.width * scaleX;
+                const height = watermarkRect.height * scaleY;
+                
+                ctx.save();
+                
+                if (currentWatermarkType === 'text') {
+                    // Apply text watermark
+                    const opacity = parseInt(textOpacity.value) / 100;
+                    const angle = parseInt(textAngle.value);
+                    
+                    ctx.globalAlpha = opacity;
+                    ctx.fillStyle = textColor.value;
+                    ctx.font = `bold ${parseInt(fontSize.value) * scaleX}px ${fontFamily.value}`;
+                    ctx.textAlign = 'left';
+                    ctx.textBaseline = 'top';
+                    
+                    // Add text background
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+                    ctx.fillRect(x, y, width, height);
+                    
+                    ctx.fillStyle = textColor.value;
+                    if (angle !== 0) {
+                        ctx.translate(x + width / 2, y + height / 2);
+                        ctx.rotate(angle * Math.PI / 180);
+                        ctx.fillText(watermarkText.value, -width / 2, -height / 2);
+                    } else {
+                        ctx.fillText(watermarkText.value, x, y);
+                    }
+                } else {
+                    // Apply image watermark
+                    const opacity = parseInt(imageOpacity.value) / 100;
+                    const angle = parseInt(imageAngle.value);
+                    
+                    ctx.globalAlpha = opacity;
+                    
+                    if (angle !== 0) {
+                        ctx.translate(x + width / 2, y + height / 2);
+                        ctx.rotate(angle * Math.PI / 180);
+                        ctx.drawImage(watermarkImageData, -width / 2, -height / 2, width, height);
+                    } else {
+                        ctx.drawImage(watermarkImageData, x, y, width, height);
+                    }
+                }
+                
+                ctx.restore();
+            }
+            
+            function resetTool() {
+                imageInput.value = '';
+                watermarkImage.value = '';
+                originalPreview.src = '';
+                originalPreview.style.display = 'none';
+                watermarkedPreview.src = '';
+                watermarkedPreview.style.display = 'none';
+                watermarkOverlay.innerHTML = '';
+                resultContainer.classList.add('hidden');
+                originalImage = null;
+                watermarkImageData = null;
+                currentWatermarkElement = null;
+                
+                // Reset to default values
+                watermarkText.value = 'Your Watermark';
+                textColor.value = '#ffffff';
+                fontSize.value = 24;
+                fontSizeValue.textContent = '24px';
+                textOpacity.value = 70;
+                textOpacityValue.textContent = '70%';
+                fontFamily.value = 'Arial';
+                textAngle.value = 0;
+                textAngleValue.textContent = '0°';
+                
+                imageOpacity.value = 70;
+                imageOpacityValue.textContent = '70%';
+                imageAngle.value = 0;
+                imageAngleValue.textContent = '0°';
+                
+                // Reset watermark type
+                watermarkTypes.forEach(t => t.classList.remove('active'));
+                document.querySelector('.watermark-type[data-type="text"]').classList.add('active');
+                setWatermarkType('text');
+            }
+            
+            function downloadImage() {
+                if (!watermarkedImage.src) return;
+                
+                const link = document.createElement('a');
+                link.download = 'watermarked-image.png';
+                link.href = watermarkedImage.src;
+                link.click();
+            }
+        });
+    </script>
+</body>
+</html>
